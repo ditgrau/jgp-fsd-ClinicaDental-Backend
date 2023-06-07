@@ -1,0 +1,18 @@
+{
+  "name": "jgp-fsd-clinicadental-backend",
+  "version": "1.0.0",
+  "description": "<details>\r   <summary>Contenido 📝</summary>\r   <ol>\r     <li><a href=\"#objetivo\">Objetivo</a></li>\r     <li><a href=\"#sobre-el-proyecto\">Sobre el proyecto</a></li>\r     <li><a href=\"#deploy-🚀\">Deploy</a></li>\r     <li><a href=\"#stack\">Stack</a></li>\r     <li><a href=\"#diagrama-bd\">Diagrama</a></li>\r     <li><a href=\"#instalación-en-local\">Instalación</a></li>\r     <li><a href=\"#endpoints\">Endpoints</a></li>\r     <li><a href=\"#futuras-funcionalidades\">Futuras funcionalidades</a></li>\r     <li><a href=\"#contribuciones\">Contribuciones</a></li>\r     <li><a href=\"#licencia\">Licencia</a></li>\r     <li><a href=\"#webgrafia\">Webgrafia</a></li>\r     <li><a href=\"#desarrollo\">Desarrollo</a></li>\r     <li><a href=\"#agradecimientos\">Agradecimientos</a></li>\r     <li><a href=\"#contacto\">Contacto</a></li>\r   </ol>\r </details>",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "4.18.2",
+    "nodemon": "2.0.22"
+  }
+}
