@@ -1,7 +1,6 @@
-
 const { Role } = require('../models');
 const roleController = {};
-
+///////////////////////////
 
 roleController.getAllRoles = async (req, res) => {
     try {
@@ -59,5 +58,5 @@ try {
 
 }
 
-
+///////////////////////////
 module.exports = roleController;
