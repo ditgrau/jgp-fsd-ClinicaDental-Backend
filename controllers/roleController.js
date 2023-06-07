@@ -2,6 +2,28 @@
 const { Role } = require('../models');
 const roleController = {};
 
+
+roleController.getAllRoles = async (req, res) => {
+    try {
+        const allRoles = await Role.findAll();
+        return res.json ({
+            success: true,
+            message: "All results displayed",
+            allRoles: allRoles
+        }
+        )
+        
+    } catch (error) {
+        return res.status(500).json ({
+            success: false,
+            message: 'Can not be displayed',
+            error: error.message
+        })
+        
+    }
+}
+
+
 roleController.createRole = async (req, res) => {
 try {
     const { name } = req.body
