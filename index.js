@@ -4,6 +4,7 @@ const PORT = 3000;
 const db = require('./db');
 const router = require ('./router');
 
+
 app.use(express.json());
 app.use (router);
 
@@ -11,7 +12,6 @@ app.use (router);
 app.get('/', (req, res) => {
     res.send('Hello World')
 })
-
 
 
 db.then (()=>{
