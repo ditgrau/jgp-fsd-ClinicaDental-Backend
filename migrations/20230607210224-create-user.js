@@ -33,7 +33,8 @@ module.exports = {
         references: {
           model: "Roles",
           key: "id"
-        }
+        },
+        defaultValue: 3
       },
       state: {
         type: Sequelize.BOOLEAN,
