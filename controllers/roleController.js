@@ -6,25 +6,25 @@ roleController.getAllRoles = async (req, res) => {
     try {
         const allRoles = await Role.findAll(
             {
-                attributes: {
-                    exclude: ["createdAt", "updatedAt"]
-                }
+                attributes: { exclude: ["createdAt", "updatedAt"] }
             }
         );
-        return res.json ({
+        return res.json (
+            {
             success: true,
             message: "All results displayed",
             allRoles: allRoles
-        }
+            }
         )
         
     } catch (error) {
-        return res.status(500).json ({
+        return res.status(500).json (
+            {
             success: false,
             message: 'Can not be displayed',
             error: error.message
-        })
-        
+            }
+        )   
     }
 }
 

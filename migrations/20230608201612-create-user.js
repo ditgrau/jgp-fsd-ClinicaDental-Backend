@@ -4,50 +4,40 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Users', {
       id: {
-        type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
+        type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING,
-        required: true
+        type: Sequelize.STRING
       },
       surname: {
         type: Sequelize.STRING
       },
-      birth_date: {
-        type: Sequelize.DATE
+      dni: {
+        type: Sequelize.STRING
       },
       email: {
-        type: Sequelize.STRING,
-        required: true
+        type: Sequelize.STRING
       },
       password: {
-        type: Sequelize.STRING,
-        required: true
+        type: Sequelize.STRING
       },
-      role_id: {
+      role: {
         type: Sequelize.INTEGER,
         references: {
           model: "Roles",
-          key: "id",
-        },
-        defaultValue: 3
-      },
-      state: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: true,
+          key: "id"
+        }
       },
       createdAt: {
-        allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       },
       updatedAt: {
-        allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       }
     });
   },
