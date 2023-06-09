@@ -10,7 +10,8 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        required: true
       },
       surname: {
         type: Sequelize.STRING
@@ -19,17 +20,25 @@ module.exports = {
         type: Sequelize.STRING
       },
       email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        required: true,
+        unique: true
       },
       password: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        required: true
       },
       role: {
         type: Sequelize.INTEGER,
         references: {
           model: "Roles",
           key: "id"
-        }
+        },
+        defaultValue: 3,
+      },
+      state:{
+        type: Sequelize.BOOLEAN,
+        defaultValue: true,
       },
       createdAt: {
         type: Sequelize.DATE,
