@@ -18,12 +18,12 @@ module.exports = (sequelize, DataTypes) => {
         }
       )
 
-      User.belongsTo(
-        models.Appointment,
-        {
-          foreignKey: 'userId'
-        }
-      )
+      // User.belongsTo(
+      //   models.Appointment,
+      //   {
+      //     foreignKey: 'userId'
+      //   }
+      // )
     
     }
   }

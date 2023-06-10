@@ -2,7 +2,7 @@ const { Role } = require('../models');
 const roleController = {};
 
 ///////////////////////////
-
+// obtener todos los roles 
 roleController.getAllRoles = async (req, res) => {
     try {
         const allRoles = await Role.findAll(
@@ -29,7 +29,7 @@ roleController.getAllRoles = async (req, res) => {
     }
 }
 
-
+// funcion para crear un nuevo rol 
 roleController.createRole = async (req, res) => {
 try {
     const { name } = req.body

@@ -1,8 +1,8 @@
 
 
-const isDentist = async (req, res, next) => {
+const isAdmin = async (req, res, next) => {
     try {
-        if (req.role !== 2) {
+        if (req.role !== 1) {
             return res.status(401).json({ //https://http.cat/
                 success: false,
                 message: "Unauthorized",
@@ -21,4 +21,4 @@ const isDentist = async (req, res, next) => {
 
 //////////////////////////////////
 
-module.exports = isDentist;
+module.exports = isAdmin;

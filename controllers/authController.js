@@ -18,13 +18,13 @@ authController.login = async (req, res)=> {
             });
         // si no encuentra el email, responde con mensaje 
         if (!userLogin) {
-            throw new SyntaxError('Invalid credentials'); //documentacion js (Lanzando nuestros propios errores/operador "throw")
+            throw new SyntaxError('Invalid credentials correo'); //documentacion js (Lanzando nuestros propios errores/operador "throw")
         }
         // ahora la validacion de la password, almacenada en el registro de la BD
         const checkedPasword = bcrypt.compareSync(password, userLogin.password);
         // si la comparacion retorna false, throw te manda al catch
         if (!checkedPasword) {
-            throw new SyntaxError('Invalid credentials'); 
+            throw new SyntaxError('Invalid credentials contraseña'); 
         }
         // si va bien, se genera token 
         const token = jwt.sign(
@@ -79,7 +79,7 @@ authController.signup = async (req, res)=> {
                 { 
                     id: newUser.id,
                     role: newUser.role,
-                    email: newUser.email
+                    email: newUser.email,
                 }, 'myword');
         
         return res.json({
