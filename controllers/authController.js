@@ -2,38 +2,41 @@
 const { User } = require('../models');
 var jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-
 const authController = {}
-var token = jwt.sign({ foo: 'bar' }, 'shhhhh');
-///////////////////////////
+
+////////////////////////////////////////////////////
 
 authController.login = async (req, res)=> {
     try {
+        //requerimiento al body
         const { email, password } = req.body
-        const userLogin = await User.findOne(
-            {
+        //funcion login, para encontrar correspondencias por email y password con la BD
+        const userLogin = await User.findOne({
                 where: {
                     email: email
                 }
-            }
-        );
-
+            });
+        // si no encuentra el email, responde con mensaje 
         if (!userLogin) {
-            return res.json({
-                sucess: true,
-                message: "Invalid credentials"
-            })
+            throw new SyntaxError('Invalid credentials'); //documentacion js (Lanzando nuestros propios errores/operador "throw")
         }
         // ahora la validacion de la password, almacenada en el registro de la BD
-        const checkedPasword = bcrypt.compareSync(password, password);
-        console.log(checkedPasword);
-
+        const checkedPasword = bcrypt.compareSync(password, userLogin.password);
+        // si la comparacion retorna false, throw te manda al catch
+        if (!checkedPasword) {
+            throw new SyntaxError('Invalid credentials'); 
+        }
+        // todo valido
         return res.json({
             success: true,
-            message: "puede acceder",
-            userLogin: userLogin
+            message: "Puede acceder",
+            userLogin: { 
+                name: userLogin.name,
+                surname: userLogin.surname, 
+                email: userLogin.email
+            }
         })
-
+    //error 500 - Internal Server Error
     } catch (error) {
         return res.status(500).json(
             {
