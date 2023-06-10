@@ -14,14 +14,14 @@ module.exports = {
         required: true,
         unique: true
       },
-      user: {
+      userId: {
         type: Sequelize.INTEGER,
         references: {
           model: "Users",
           key: "id"
         },
       },
-      treatment: {
+      treatmentId: {
         type: Sequelize.INTEGER,
         references: {
           model: "Treatments",

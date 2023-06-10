@@ -9,21 +9,21 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      user: {
+      userId: {
         type: Sequelize.INTEGER,
         references: {
           model: "Users",
           key: "id"
         },
       },
-      dentist: {
+      dentistId: {
         type: Sequelize.INTEGER,
         references: {
           model: "Dentists",
           key: "id"
         },
       },
-      treatment: {
+      treatmentId: {
         type: Sequelize.INTEGER,
         references: {
           model: "Treatments",
@@ -32,7 +32,7 @@ module.exports = {
       },
       date: {
         type: Sequelize.DATEONLY,
-        //  '2022-01-17'
+         //  '2022-01-17'
         required: true
       },
       time: {
@@ -41,12 +41,12 @@ module.exports = {
         required: true
       },
       createdAt: {
-        type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        type: Sequelize.DATE
       },
       updatedAt: {
-        type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        type: Sequelize.DATE
       }
     });
   },
