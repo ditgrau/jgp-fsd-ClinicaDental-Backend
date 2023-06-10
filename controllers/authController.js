@@ -1,4 +1,4 @@
-// const { request } = require('express');
+//saltRounds = 10; secret = "myword"
 const { User } = require('../models');
 var jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
@@ -24,10 +24,14 @@ authController.login = async (req, res)=> {
                 message: "Invalid credentials"
             })
         }
+        // ahora la validacion de la password, almacenada en el registro de la BD
+        const checkedPasword = bcrypt.compareSync(password, password);
+        console.log(checkedPasword);
 
         return res.json({
             success: true,
-            message: "puede acceder"
+            message: "puede acceder",
+            userLogin: userLogin
         })
 
     } catch (error) {
@@ -35,7 +39,7 @@ authController.login = async (req, res)=> {
             {
                 success: false, 
                 message: "User can be logged",
-                error: error
+                error: error.message,
             }
         )
     }
