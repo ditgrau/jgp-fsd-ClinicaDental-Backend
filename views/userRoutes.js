@@ -1,10 +1,11 @@
 const router = require('express').Router();
 const userController = require('../controllers/userController');
+const auth = require('../middleware/verifyToken');
 
 ///////////////////////////
 
-router.get('/clients', userController.getAllClients)
-router.post('/userRole', userController.getUSerByRole)
+router.get('/clients', auth, userController.getAllClients);
+router.post('/userRole', auth, userController.getUSerByRole);
 
 ///////////////////////////
 
