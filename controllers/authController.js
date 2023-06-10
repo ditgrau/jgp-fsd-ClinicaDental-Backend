@@ -26,6 +26,13 @@ authController.login = async (req, res)=> {
         if (!checkedPasword) {
             throw new SyntaxError('Invalid credentials'); 
         }
+        // si va bien, se genera token 
+        const token = jwt.sign(
+                { 
+                    id: userLogin.id,
+                    role: userLogin.role,
+                    email: userLogin.email
+                }, 'myword');
         // todo valido
         return res.json({
             success: true,
@@ -34,7 +41,8 @@ authController.login = async (req, res)=> {
                 name: userLogin.name,
                 surname: userLogin.surname, 
                 email: userLogin.email
-            }
+            },
+            token: token
         })
     //error 500 - Internal Server Error
     } catch (error) {
@@ -75,7 +83,9 @@ authController.signup = async (req, res)=> {
                 }, 'myword');
         
         return res.json({
-            newUser: newUser,
+            sucess: true,
+            message: "Registered user",
+            newUser: newUser, //////////////////////// quitarlo (?)
             token: token
         })
     })
