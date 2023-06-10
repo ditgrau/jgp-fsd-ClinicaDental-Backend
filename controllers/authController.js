@@ -1,28 +1,57 @@
-// const { User } = require('../models');
+// const { request } = require('express');
+const { User } = require('../models');
+var jwt = require('jsonwebtoken');
+
 const authController = {}
+var token = jwt.sign({ foo: 'bar' }, 'shhhhh');
 ///////////////////////////
 
-// authController.signUp = async (req, res) => {
-//     try {
-//         const {name, surname, birth_date, email, password } = req.body;
+authController.login = async (req, res)=> {
+    try {
+        const { email, password } = req.body
+        const userLogin = await User.findOne(
+            {
+                where: {
+                    email: email
+                }
+            }
+        );
 
-//         const newUser = await User.create({
-//             name: name,
-//             surname: surname,
-//             birth_date: birth_date,
-//             email: email,
-//             password: password
-//         })
+        if (!userLogin) {
+            return res.json({
+                sucess: true,
+                message: "Invalid credentials"
+            })
+        }
 
+        return res.json({
+            success: true,
+            message: "puede acceder"
+        })
+
+    } catch (error) {
+        return res.status(500).json(
+            {
+                success: false, 
+                message: "User can be logged",
+                error: error
+            }
+        )
+    }
+}
+
+authController.signup = async (req, res)=> {
+    try {
         
-//     } catch (error) {
-//         return res.status(500).json({
-//             success: false, 
-//             message: "Registration is not performed",
-//             error: error.message
-//         }) 
-//     }
-// }
+    } catch (error) {
+        return res.status(500).json({
+            sucess:false,
+            message: "User cannot register",
+            error: error.name
+        })
+        
+    }
+}
 
 ///////////////////////////
-module.exports = authController; 
+module.exports = authController;

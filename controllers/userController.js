@@ -1,5 +1,6 @@
 const { User } = require('../models');
 const userController = {}
+
 ///////////////////////////
 
 userController.getAllClients = async (req, res) => {
@@ -29,7 +30,6 @@ userController.getAllClients = async (req, res) => {
         
     }
 }
-
 
 userController.getUSerByRole = async (req, res) =>{
     try {
