@@ -1,3 +1,5 @@
+
+
 const isDentist = async (req, res, next) => {
     try {
         if (req.role !== 2) {
@@ -15,7 +17,8 @@ const isDentist = async (req, res, next) => {
             error: error.message
         })
     }
-
 }
+
+//////////////////////////////////
 
 modules.export = isDentist;
