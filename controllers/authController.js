@@ -44,14 +44,17 @@ authController.login = async (req, res)=> {
 authController.signup = async (req, res)=> {
     try {
         //requerimiento al body 
-        const { name, surname, dni, email, password } = req.body;
+        const { name, surname, dni, role, email, password } = req.body;
         // encriptacion de la contraseña
         const hashedPassword = bcrypt.hashSync(password, 10);
+        // valor por defecto para role
+        const roleDefault = role || 3;
         // crear nuevo usuario
         const newUser = await User.create({
             name: name,
             surname:surname,
             dni: dni,
+            role: roleDefault,
             email: email, 
             password: hashedPassword,
         })
@@ -69,10 +72,6 @@ authController.signup = async (req, res)=> {
             token: token
         })
     })
-    // manejo de error, promesa
-        .catch(error => {
-            console.log('error: ', error.name);
-        })
     // manejo de error, try/catch 
     } catch (error) {
         return res.status(500).json({
