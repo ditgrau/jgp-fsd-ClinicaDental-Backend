@@ -2,10 +2,10 @@
 
 const isAdmin = async (req, res, next) => {
     try {
-        if (req.role !== 1) {
+        if (req.roleId !== "1") { //el objeto me devuelve string no integer
             return res.status(401).json({ //https://http.cat/
                 success: false,
-                message: "Unauthorized",
+                message: "Unauthorized" + req.roleId,
             })
         }
         

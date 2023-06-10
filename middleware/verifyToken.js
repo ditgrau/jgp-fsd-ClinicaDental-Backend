@@ -20,8 +20,8 @@ const auth = (req, res, next) => {
         const token = bearerToken.split(" ")[1];   
         const decoded = jwt.verify(token, 'myword');
         
-        req.userId = decoded.userId;
-        req.roleId = decoded.roleId;
+        req.userId = decoded.id;
+        req.roleId = decoded.role;
         req.email = decoded.email;
 
         next();
