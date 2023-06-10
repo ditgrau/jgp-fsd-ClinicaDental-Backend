@@ -8,8 +8,8 @@ const authRoutes = require('./views/authRoutes');
 
 ////////////////////////
 
-router.use('/', roleRoutes);
-router.use('/', userRoutes);
+router.use('/role', roleRoutes);
+router.use('/user', userRoutes);
 router.use('/', authRoutes);
 
 ////////////////////////

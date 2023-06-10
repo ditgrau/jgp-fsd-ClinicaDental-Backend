@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       Treatment.belongsToMany(
         models.Appointment,
         {
-          trough: 'Treat_appoint',
+          through: 'Treat_appoint',
           foreignKey: 'treatmentId'
         }
       )
