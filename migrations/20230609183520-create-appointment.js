@@ -9,28 +9,44 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      use: {
-        type: Sequelize.INTEGER
+      user: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Users",
+          key: "id"
+        },
       },
       dentist: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Dentists",
+          key: "id"
+        },
       },
       treatment: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Treatments",
+          key: "id"
+        },
       },
       date: {
-        type: Sequelize.DATE
+        type: Sequelize.DATEONLY,
+        //  '2022-01-17'
+        required: true
       },
       time: {
-        type: Sequelize.TIME
+        type: Sequelize.TIME,
+        // "09:00:00"
+        required: true
       },
       createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       },
       updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       }
     });
   },

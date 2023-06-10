@@ -18,6 +18,7 @@ module.exports = {
       },
       dni: {
         type: Sequelize.STRING,
+        allowNull: false,
       },
       email: {
         type: Sequelize.STRING,
