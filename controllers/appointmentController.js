@@ -130,7 +130,31 @@ appointmentController.getAllAppt = async (req, res) => {
   
 }
 
+///////////////////////////////////////////////////////
 
+appointmentController.apptById = async (req, res) => {
+  try {
+    const apptId = req.query.id;
+    const apptById = await Appointment.findAll({
+      where: {
+        id: apptId
+    },
+    })
+    return res.json({
+      sucess: true, 
+      message: "All results by role displayed",
+      "Dentist area - Appointment in detail": apptById
+  })
+
+  } catch (error) {
+    res.status(500).json({
+        success: false,
+        message: 'Can not be displayed',
+        error: error.message
+    })
+    
+}
+}
 module.exports = appointmentController;
 
 

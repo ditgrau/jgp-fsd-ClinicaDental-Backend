@@ -37,7 +37,6 @@ userController.getAllClients = async (req, res) => {
 userController.getUSerByRole = async (req, res) =>{
     try {
         const { role } = req.body;
-        console.log(role);
         const usersByRole = await User.findAll(
         {
             where: {
