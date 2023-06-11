@@ -104,6 +104,32 @@ appointmentController.myApptDentist = async (req, res) => {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+appointmentController.getAllAppt = async (req, res) => {
+  try {
+    const allAppt = await Appointment.findAll(
+      {
+        attributes: { exclude: ["createdAt", "updatedAt"] }
+      }
+    );
+    return res.json (
+      {
+      success: true,
+      message: `${allAppt.length} results displayed`,
+      allAppt: allAppt
+      }
+  )
+  } catch (error) {
+    return res.status(500).json (
+        {
+        success: false,
+        message: 'Can not be displayed',
+        error: error.message
+        }
+    ) 
+  }
+  
+}
+
 
 module.exports = appointmentController;
 
