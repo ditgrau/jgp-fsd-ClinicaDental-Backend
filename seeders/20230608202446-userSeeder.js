@@ -58,7 +58,7 @@ module.exports = {
         id: 6,
         name: "Mateo",
         surname: "Andrada",
-        dni: "12362348T",
+        dni: "12362338T",
         email: "mateo@email.com",
         password: "$2b$10$FKlJRat0a/fVK.TgQqUkzu7TrKk41ZIYOHwt.VGYaSIXrKsdTDfYC", //1234-mateo
         role: 3,
@@ -68,7 +68,7 @@ module.exports = {
         id: 7,
         name: "Gema",
         surname: "Duato",
-        dni: "12362348T",
+        dni: "15662348T",
         email: "gema@email.com",
         password: "$2b$10$YovmUTgzfhlUXhMEK01Wv.VNrxKWrTKmAUe2XfZt0iXhWj81QFbgu", //1234-gema
         role: 3,
@@ -78,7 +78,7 @@ module.exports = {
         id: 8,
         name: "Paula",
         surname: "Tudon",
-        dni: "12362348T",
+        dni: "12362399T",
         email: "paula@email.com",
         password: "$2b$10$wCgi3KhJRuYDRegLuw3YSuicH/864Q2uGGN3jGWx.7phn/oG3afou", //1234-paula
         role: 3,

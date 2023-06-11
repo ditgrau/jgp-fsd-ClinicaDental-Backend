@@ -69,5 +69,33 @@ catch (error) {
 }
 }
 
+userController.myProfile = async (req, res) => {
+try {
+
+    const myId = req.userId //lo saco del token
+    const myProfile = await User.findByPk(myId)
+
+    return res.json(
+        {
+            succcess: true,
+            message: "Your profile: ",
+            myProfile: myProfile
+        }
+    )
+
+    
+} catch (error) {
+    return res.status(500).json({
+        success: false,
+        message: 'Can not be displayed',
+        error: error.message
+    })
+    
+}
+
+}
+
+
+
 ///////////////////////////
 module.exports = userController;

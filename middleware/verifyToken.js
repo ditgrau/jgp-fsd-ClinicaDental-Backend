@@ -7,11 +7,11 @@ const auth = (req, res, next) => {
     try {
         // capturar el token del header
         const bearerToken = req.headers.authorization;
-        // di no existe: error
+        // si no existe: error
         if(!bearerToken) {
-            return res.json(
+            return res.status(403).json(
                 {
-                    success: true,
+                    success: false,
                     message: "Access not allowed"
                 }
             )
@@ -19,7 +19,7 @@ const auth = (req, res, next) => {
 
         const token = bearerToken.split(" ")[1];   
         const decoded = jwt.verify(token, 'myword');
-        
+        // importarte, es la info que extraigo del token
         req.userId = decoded.id;
         req.roleId = decoded.role;
         req.email = decoded.email;
@@ -27,7 +27,7 @@ const auth = (req, res, next) => {
         next();
 
     } catch (error) {
-        return res.status(500).json ({
+        return res.status(403).json ({
             success: false,
             message: "Invalid token",
             error: error.message
