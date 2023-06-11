@@ -1,11 +1,11 @@
 
 
-const noUser = async (req, res, next) => {
+const isUser = async (req, res, next) => {
     try {
-        if (req.roleId == 3) { //el objeto me devuelve string no integer
+        if (req.roleId !== 3 || req.roleId !== 1) { //en mi app los admin entran en todo
             return res.status(401).json({ //https://http.cat/
                 success: false,
-                message: "Unauthorized"
+                message: "Unauthorized, client area"
             })
         }
         

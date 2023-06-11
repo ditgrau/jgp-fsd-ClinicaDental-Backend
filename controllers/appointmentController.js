@@ -89,7 +89,7 @@ appointmentController.myApptDentist = async (req, res) => {
   return res.json({
     success: true,
     message: `Your ${myAppointments.length} dental appointments`,
-    myAppointments: myAppointments
+    "Dentist area - My appointments": myAppointments
   })
 
   } catch (error) {
@@ -115,7 +115,7 @@ appointmentController.getAllAppt = async (req, res) => {
       {
       success: true,
       message: `${allAppt.length} results displayed`,
-      allAppt: allAppt
+      "Dentist area - All appointments": allAppt
       }
   )
   } catch (error) {
@@ -143,7 +143,7 @@ appointmentController.apptById = async (req, res) => {
     return res.json({
       sucess: true, 
       message: "All results by role displayed",
-      "Dentist area - Appointment in detail": apptById
+      "Dentist area - Appointment details": apptById
   })
 
   } catch (error) {
