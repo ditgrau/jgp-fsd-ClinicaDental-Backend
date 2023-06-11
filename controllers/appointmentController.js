@@ -72,6 +72,39 @@ appointmentController.myAppointments = async (req, res) => {
 
 /////////////////////////////////////////////////////////////
 
+appointmentController.myApptDentist = async (req, res) => {
+  try {
+    const myId = req.userId 
+    
+    const myAppointments = await Appointment.findAll({
+
+      where: {
+        dentistId: myId
+      },
+      attributes: {
+        exclude: ["createdAt", "updatedAt", "userId"]
+    }
+  })
+
+  return res.json({
+    success: true,
+    message: `Your ${myAppointments.length} dental appointments`,
+    myAppointments: myAppointments
+  })
+
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Can not be displayed',
+      error: error.message
+  })
+  }
+
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 module.exports = appointmentController;
 
 
