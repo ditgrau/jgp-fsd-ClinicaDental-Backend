@@ -5,7 +5,7 @@ const isDentist = async (req, res, next) => {
         if (req.roleId !== 2) {
             return res.status(401).json({ //https://http.cat/
                 success: false,
-                message: "Unauthorized "+ req.roleId,
+                message: "Unauthorized",
             })
         }
         
