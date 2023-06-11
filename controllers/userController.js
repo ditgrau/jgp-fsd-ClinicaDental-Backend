@@ -51,7 +51,7 @@ userController.getUSerByRole = async (req, res) =>{
 
     if (usersByRole.length === 0) {
         return res.status(204).json({
-            sucess: false,
+            success: false,
             message: "No content for this role id",
         })
         

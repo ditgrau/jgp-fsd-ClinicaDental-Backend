@@ -27,13 +27,11 @@ module.exports = {
       },
       date: {
         type: Sequelize.DATEONLY,
-        allowNull: false,
          //  '2022-01-17'
       },
       hour: {
         type: Sequelize.TIME,
         allowNull: false,
-        // "09:00:00"
       },
       createdAt: {
         allowNull: false,

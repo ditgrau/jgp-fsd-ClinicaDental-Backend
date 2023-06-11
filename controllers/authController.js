@@ -56,6 +56,8 @@ authController.login = async (req, res)=> {
     }
 }
 
+///////////////////////////////////////////////////////
+
 authController.signup = async (req, res)=> {
     try {
         //requerimiento al body 
