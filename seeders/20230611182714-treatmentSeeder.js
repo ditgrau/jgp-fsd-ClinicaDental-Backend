@@ -6,39 +6,45 @@ module.exports = {
     await queryInterface.bulkInsert('Treatments', [
       {
         id: 1,
+        specialtyId: 4,
         name: "Revision general",
         price: 30.5,
-        time_spent: 30
+        time: 30
       },
       {
         id: 2,
+        specialtyId: 4,
         name: "Limpieza bucal",
         price: 40,
-        time_spent: 20
+        time: 20
       },
       {
         id: 3,
+        specialtyId: 3,
         name: "Blanqueamiento",
         price: 60,
-        time_spent: 45
+        time: 45
       },
       {
         id: 4,
+        specialtyId: 2,
         name: "Extraccion",
         price: 75,
-        time_spent: 60
+        time: 60
       },
       {
         id: 5,
+        specialtyId: 2,
         name: "Implantes",
         price: 850,
-        time_spent: 90
+        time: 90
       },
       {
         id: 6,
+        specialtyId: 1,
         name: "Revision ortodoncia",
         price: 25.5,
-        time_spent: 15
+        time: 15
       }
     ])
   },

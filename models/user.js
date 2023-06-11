@@ -18,6 +18,20 @@ module.exports = (sequelize, DataTypes) => {
         }
       )
 
+      User.hasOne(
+        models.Dentist,
+        {
+          foreignKey: 'userId'
+        }
+      )
+
+      User.hasMany(
+        models.Appointment,
+        {
+          foreignKey: 'userId'
+        }
+      )
+
       // User.belongsTo(
       //   models.Appointment,
       //   {

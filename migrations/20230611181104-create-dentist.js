@@ -9,30 +9,26 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      collegiate: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        unique: true
-      },
       userId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         references: {
           model: "Users",
           key: "id"
         },
-      },
-      treatmentId: {
-        type: Sequelize.INTEGER,
         allowNull: false,
+      },
+      specialtyId: {
+        type: Sequelize.INTEGER,
         references: {
-          model: "Treatments",
+          model: "Specialties",
           key: "id"
         },
+        allowNull: false,
       },
-      state: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: true,
+      collegiate: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        unique: true
       },
       createdAt: {
         allowNull: false,

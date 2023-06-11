@@ -10,25 +10,18 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // Appointment.hasOne(
-      //   models.User,
-      //   {
-      //     foreignKey: 'userId'
-      //   }
-      // )
-
-      Appointment.hasOne(
-        models.Dentist,
+      // define association here
+      Appointment.belongsTo(
+        models.User,
         {
-          foreignKey: 'dentistId'
+          foreignKey: 'userId'
         }
       )
 
-      Appointment.belongsToMany(
-        models.Treatment,
+      Appointment.belongsTo(
+        models.Dentist,
         {
-          through: 'Treat_appoint',
-          foreignKey: 'appointmentId'
+          foreignKey: 'dentistId'
         }
       )
     }
@@ -37,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
     userId: DataTypes.INTEGER,
     dentistId: DataTypes.INTEGER,
     date: DataTypes.DATEONLY,
-    time: DataTypes.TIME
+    hour: DataTypes.TIME
   }, {
     sequelize,
     modelName: 'Appointment',

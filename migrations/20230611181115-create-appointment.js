@@ -2,39 +2,52 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Treatments', {
+    await queryInterface.createTable('Appointments', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
-        type: Sequelize.STRING,
+      userId: {
+        type: Sequelize.INTEGER,
         allowNull: false,
+        references: {
+          model: "Users",
+          key: "id"
+        },
       },
-      price: {
-        type: Sequelize.FLOAT,
+      dentistId: {
+        type: Sequelize.INTEGER,
         allowNull: false,
+        references: {
+          model: "Dentists",
+          key: "id"
+        },
       },
-      time_spent: {
-        type: Sequelize.INTEGER
+      date: {
+        type: Sequelize.DATEONLY,
+        allowNull: false,
+         //  '2022-01-17'
       },
-      state: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: true,
+      hour: {
+        type: Sequelize.TIME,
+        allowNull: false,
+        // "09:00:00"
       },
       createdAt: {
+        allowNull: false,
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       },
       updatedAt: {
+        allowNull: false,
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       }
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Treatments');
+    await queryInterface.dropTable('Appointments');
   }
 };

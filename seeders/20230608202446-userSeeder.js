@@ -51,7 +51,7 @@ module.exports = {
         dni: "12362348T",
         email: "espe@email.com",
         password: "$2b$10$psqVTqGsdS5lo/o1qxnn2.Gd51lEE0t0IMEzzPKDbtMXESvG7e106", //1234-espe
-        role: 3,
+        role: 2,
         state: true,
       },
       {
