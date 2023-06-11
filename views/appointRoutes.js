@@ -1,15 +1,20 @@
 const router = require('express').Router();
-const appointmentController = require('../controllers/appointmentController');
+const apptDentistController = require('../controllers/apptDentistController');
+const apptUserController = require('../controllers/apptUserController');
 const auth = require('../middleware/verifyToken');
 const isDentist = require('../middleware/isDentist');
+const isUser = require('../middleware/isUser');
 
 ////////////////////////////////////////////////////////
 
-router.post('/create', auth, appointmentController.newAppoint);
-router.get('/myAppointments', auth, appointmentController.myAppointments);
-router.get('/myApptDentist', auth, isDentist, appointmentController.myApptDentist);
-router.get('/getAllAppt', auth, isDentist, appointmentController.getAllAppt);
-router.get('/apptById', auth, isDentist, appointmentController.apptById);
+router.post('/create', auth, apptUserController.newAppoint);
+router.get('/myAppointments', auth, isUser, apptUserController.myAppointments);
+
+////////////////////////////////////////////////////////
+
+router.get('/myApptDentist', auth, isDentist, apptDentistController.myApptDentist);
+router.get('/getAllAppt', auth, isDentist, apptDentistController.getAllAppt);
+router.get('/apptById', auth, isDentist, apptDentistController.apptById);
 
 ////////////////////////////////////////////////////////
 

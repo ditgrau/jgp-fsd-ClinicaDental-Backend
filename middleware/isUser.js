@@ -1,8 +1,8 @@
 
-
 const isUser = async (req, res, next) => {
+
     try {
-        if (req.roleId !== 3 || req.roleId !== 1) { //en mi app los admin entran en todo
+        if (req.roleId !== 3) {
             return res.status(401).json({ //https://http.cat/
                 success: false,
                 message: "Unauthorized, client area"
@@ -19,6 +19,6 @@ const isUser = async (req, res, next) => {
     }
 }
 
-//////////////////////////////////
+///////////////////////////////////////////
 
-module.exports = noUser;
+module.exports = isUser;

@@ -48,62 +48,57 @@ userController.getUSerByRole = async (req, res) =>{
         }
     )
 
-    if (usersByRole.length === 0) {
-        return res.status(204).json({
-            success: false,
-            message: "No content for this role id",
+        if (usersByRole.length === 0) {
+            return res.status(204).json({
+                success: false,
+                message: "No content for this role id",
+            })   
+        }
+
+        return res.json({
+            sucess: true, 
+            message: "All results by role displayed",
+            usersByRole: usersByRole
         })
-        
-    }
-    return res.json({
-        sucess: true, 
-        message: "All results by role displayed",
-        usersByRole: usersByRole
-    })
-}
-catch (error) {
-    res.status(500).json({
-        success: false,
-        message: 'Can not be displayed',
-        error: error.message
-    })
+    } 
     
-}
+    catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Can not be displayed',
+            error: error.message
+        }) 
+    }
 }
 
 //////////////////////////////////////////////////////
 
 userController.myProfile = async (req, res) => {
-try {
+    try {
+        const myId = req.userId //lo saco del token
+        const myProfile = await User.findByPk(myId)
 
-    const myId = req.userId //lo saco del token
-    const myProfile = await User.findByPk(myId)
-
-    return res.json(
-        {
-            succcess: true,
-            message: "Your profile: ",
-            myProfile: myProfile
-        }
-    )
-
-
+        return res.json({
+                succcess: true,
+                message: "Your profile: ",
+                myProfile: myProfile
+            })    
+    } 
     
-} catch (error) {
-    return res.status(500).json({
-        success: false,
-        message: 'Can not be displayed',
-        error: error.name
-    })
-    
-}
+    catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: 'Can not be displayed',
+            error: error.name
+        })
+
+    }
 }
 
 //////////////////////////////////////////////////////
 
 userController.updateProfile = async (req, res) => {
     try {
-    
         const myId = req.userId //lo saco del token
         const { name, surname, dni, email, password } = req.body; 
         //lo requiero del body como en el registro
@@ -124,26 +119,22 @@ userController.updateProfile = async (req, res) => {
         )
 
         const updatedProfile = await User.findByPk(myId)
-        
-        return res.json(
-            {
+        return res.json({
                 succcess: true,
                 message: "Your profile: ",
                 myProfile: updatedProfile,
                 rowsChanged: myProfile,
-            }
-        )
+            })    
+    } 
     
-        
-    } catch (error) {
+    catch (error) {
         return res.status(500).json({
             success: false,
             message: 'Can not be displayed',
             error: error.message
-        })
-        
+        })   
     }
-    }
+}
 
 ///////////////////////////
 module.exports = userController;
