@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
         models.Treatment,
         {
           through: 'Treat_appoint',
-          foreignKey: 'treatmentId'
+          foreignKey: 'appointmentId'
         }
       )
     }
@@ -36,7 +36,6 @@ module.exports = (sequelize, DataTypes) => {
   Appointment.init({
     userId: DataTypes.INTEGER,
     dentistId: DataTypes.INTEGER,
-    treatmentId: DataTypes.INTEGER,
     date: DataTypes.DATEONLY,
     time: DataTypes.TIME
   }, {

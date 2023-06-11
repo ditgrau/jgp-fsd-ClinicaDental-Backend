@@ -12,10 +12,18 @@ module.exports = {
       treatmentId: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        references: {
+          model: "Treatment",
+          key: "id"
+        },
       },
       appointmentId: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        references: {
+          model: "Appointment",
+          key: "id"
+        },
       },
       createdAt: {
         allowNull: false,
