@@ -112,11 +112,11 @@ userController.updateProfile = async (req, res) => {
         // primero va la peticion al body, luego el where
         const myProfile = await User.update({
              // update 
-            name: name,
-            surname:surname,
-            dni: dni,
-            email: email, 
-            password: hashedPassword,
+            name: name || this.User, // User.name = User (por el modelo(?)) //this.profile (undefined) 
+            surname:surname || this.User,
+            dni: dni || this.User,
+            email: email || this.User, 
+            password: hashedPassword || this.User,
             },{
                 where: {
                     id: myId

@@ -37,19 +37,19 @@ module.exports = {
         type: Sequelize.DATEONLY,
         allowNull: false,
          //  '2022-01-17'
-        required: true
       },
       time: {
         type: Sequelize.TIME,
         allowNull: false,
         // "09:00:00"
-        required: true
       },
       createdAt: {
+        allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         type: Sequelize.DATE
       },
       updatedAt: {
+        allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         type: Sequelize.DATE
       }
