@@ -11,6 +11,7 @@ module.exports = {
       },
       userId: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
           model: "Users",
           key: "id"
@@ -18,6 +19,7 @@ module.exports = {
       },
       dentistId: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
           model: "Dentists",
           key: "id"
@@ -25,6 +27,7 @@ module.exports = {
       },
       treatmentId: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
           model: "Treatments",
           key: "id"
@@ -32,11 +35,13 @@ module.exports = {
       },
       date: {
         type: Sequelize.DATEONLY,
+        allowNull: false,
          //  '2022-01-17'
         required: true
       },
       time: {
         type: Sequelize.TIME,
+        allowNull: false,
         // "09:00:00"
         required: true
       },

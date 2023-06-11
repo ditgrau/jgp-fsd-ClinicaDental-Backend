@@ -1,7 +1,8 @@
 const { User } = require('../models');
+const bcrypt = require('bcrypt');
 const userController = {}
 
-///////////////////////////
+///////////////////////////////////////////////////////
 
 userController.getAllClients = async (req, res) => {
     try {
@@ -30,6 +31,8 @@ userController.getAllClients = async (req, res) => {
         
     }
 }
+
+//////////////////////////////////////////////////////
 
 userController.getUSerByRole = async (req, res) =>{
     try {
@@ -69,6 +72,8 @@ catch (error) {
 }
 }
 
+//////////////////////////////////////////////////////
+
 userController.myProfile = async (req, res) => {
 try {
 
@@ -83,19 +88,63 @@ try {
         }
     )
 
+
     
 } catch (error) {
     return res.status(500).json({
         success: false,
         message: 'Can not be displayed',
-        error: error.message
+        error: error.name
     })
     
 }
-
 }
 
+//////////////////////////////////////////////////////
 
+userController.updateProfile = async (req, res) => {
+    try {
+    
+        const myId = req.userId //lo saco del token
+        const { name, surname, dni, email, password } = req.body; 
+        //lo requiero del body como en el registro
+        const hashedPassword = bcrypt.hashSync(password, 10);
+        // primero va la peticion al body, luego el where
+        const myProfile = await User.update({
+             // update 
+            name: name,
+            surname:surname,
+            dni: dni,
+            email: email, 
+            password: hashedPassword,
+            },{
+                where: {
+                    id: myId
+                },
+            } 
+        )
+
+        const updatedProfile = await User.findByPk(myId)
+        
+        return res.json(
+            {
+                succcess: true,
+                message: "Your profile: ",
+                myProfile: updatedProfile,
+                rowsChanged: myProfile,
+            }
+        )
+    
+        
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: 'Can not be displayed',
+            error: error.message
+        })
+        
+    }
+    }
 
 ///////////////////////////
 module.exports = userController;

@@ -10,7 +10,8 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       treatmentId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
       },
       appointmentId: {
         type: Sequelize.INTEGER
