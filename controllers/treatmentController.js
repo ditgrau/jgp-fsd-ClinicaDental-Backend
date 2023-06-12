@@ -1,4 +1,4 @@
-const { Treatment , Dentist , Specialty, User} = require('../models');
+const { Treatment, Dentist, Specialty, User } = require('../models');
 const treatmentController = {};
 
 ///////////////////////////////////////////
@@ -35,33 +35,42 @@ treatmentController.dentistByTreatment = async (req, res) => {
             dentist.userId
         ));
         // 'userIdDentist' tengo un array con los userId de cada medico de esa especialidad (hacer mas seeders, VAGA!)
-        
-
-        
+        const dentistNames = [];
+        for (let i = 0; i < userIdDentist.length; i++) {
+            const getNames = await User.findOne(
+                {
+                    where:
+                    {
+                        id: userIdDentist[i]
+                    }
+                }
+            )
+            dentistNames.push(getNames)
 
         return res.json({
-            "userId": userIdDentist,
-            "Info dentistas": detailsDentist,
-            dentista: dentistBySpecialty,
-            "Tratamiento": 
-            {
-            "Nombre": treatBySpecialty.name,
-            "Precio": treatBySpecialty.price,
-            "Duracion tratamiento": treatBySpecialty.time
-            },
-            "Especialidad": specialty.name,
+                    "dentistNames": getNames,
+                    "userId": userIdDentist,
+                    "Info dentistas": detailsDentist,
+                    dentista: dentistBySpecialty,
+                    "Tratamiento":
+                    {
+                        "Nombre": treatBySpecialty.name,
+                        "Precio": treatBySpecialty.price,
+                        "Duracion tratamiento": treatBySpecialty.time
+                    },
+                    "Especialidad": specialty.name,
 
-        })
+                })
 
 
-    } catch (error) {
-        return res.status(500).json({
-            success: false,
-            message: 'Can not be displayed',
-            error: error.message
-        })
+        } catch (error) {
+            return res.status(500).json({
+                success: false,
+                message: 'Can not be displayed',
+                error: error.message
+            })
+        }
     }
-}
 
 
 ///////////////////////////////////////////
