@@ -1,3 +1,4 @@
+require('dotenv').config() //para las variables de entorno
 const express = require('express');
 const app = express();
 const PORT = 3000;

@@ -34,7 +34,7 @@ authController.login = async (req, res) => {
                 role: userLogin.role,
                 email: userLogin.email
             },
-            'myword');
+            process.env.SECRET_WORD);
         // todo valido
         return res.json({
             success: true,
@@ -84,7 +84,7 @@ authController.signup = async (req, res) => {
                         role: newUser.role,
                         email: newUser.email,
                     }, 
-                    'myword');
+                    process.env.SECRET_WORD);
 
                 return res.json({
                     sucess: true,
