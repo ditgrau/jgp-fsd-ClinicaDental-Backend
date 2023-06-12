@@ -34,6 +34,7 @@ module.exports = {
         role: 2,
         state: true,
       },
+      
       {
         id: 4,
         name: "Pedro",
@@ -81,6 +82,107 @@ module.exports = {
         dni: "12362399T",
         email: "paula@email.com",
         password: "$2b$10$wCgi3KhJRuYDRegLuw3YSuicH/864Q2uGGN3jGWx.7phn/oG3afou", //1234-paula
+        role: 3,
+        state: true,
+      },
+      {
+        id: 9,
+        name: "Roberto",
+        surname: "Mari",
+        dni: "12444399T",
+        email: "roberto@email.com",
+        password: "$2b$10$T.wL9oT2qT1mEebU3hhHPOCXfuNkcCq6Dtguq00vUF6cY0IudcsVS", //1234-roberto
+        role: 3,
+        state: true,
+      },
+      {
+        id: 10,
+        name: "Martina",
+        surname: "Suarez",
+        dni: "111111P",
+        email: "martina@email.com",
+        password: "$2b$10$Ddp3ioetRhw1UCDL79eJBurbhcHfgyxdiWYk9KzhcKZyypFCAW5qK", //1234-martina
+        role: 3,
+        state: true,
+      },
+      {
+        id: 11,
+        name: "Guille",
+        surname: "Gil",
+        dni: "45461999T",
+        email: "guille@email.com",
+        password: "$2b$10$U/wMhUklOYW1xM4T4Fu22..5WAsyVVvDtyMBUT079JHEe.bESSj7i", //1234-guille
+        role: 2,
+        state: true,
+      },
+      {
+        id: 12,
+        name: "Nerea",
+        surname: "Peinado",
+        dni: "454512789T",
+        email: "nerea@email.com",
+        password: "$2b$10$cia3kBkES/LLUsKDuHBNM.3IfuGT7qmLBWSDO84MymKK7Nvgsv.IK", //1234-nerea
+        role: 2,
+        state: true,
+      },
+      {
+        id: 13,
+        name: "Mayte",
+        surname: "Naranjo",
+        dni: "45666348T",
+        email: "mayte@email.com",
+        password:"$2b$10$nFowF/mC.5.Sq/RxbwRNruv9Z3jWL9vY4YsbYNuMJEMyEG46DQY3e", //1234-mayte
+        role: 2,
+        state: true,
+      },
+      
+      {
+        id: 14,
+        name: "Lorenzo",
+        surname: "Iborra",
+        dni: "12367776T",
+        email: "lorenzo@email.com",
+        password:"$2b$10$kHJ1AXiceqYwuGd8sDxY/.9LAP47Hv8ij7JTzb8rocjHeFVlW27wi", //1234-lorenzo
+        role: 2,
+        state: false,
+      },
+      {
+        id: 15,
+        name: "Ana",
+        surname: "Llopis",
+        dni: "123622228T",
+        email: "ana@email.com",
+        password: "$2b$10$L8EA/VBXSbSmuXRBfzMoTuP8agGrpgJKL/aJxS5CUlAOxPOQ5L4vO", //1234-ana
+        role: 2,
+        state: true,
+      },
+      {
+        id: 16,
+        name: "Mario",
+        surname: "Millan",
+        dni: "123111338T",
+        email: "mario@email.com",
+        password: "$2b$10$YF.SWAKVXwDmc77.EGW7iOZFEWpy6s0Mo8vusb/xa.1Afw0Igloo.", //1234-mario
+        role: 3,
+        state: false,
+      },
+      {
+        id: 17,
+        name: "Esther",
+        surname: "Valencia",
+        dni: "19872348T",
+        email: "esther@email.com",
+        password:"$2b$10$0YYwu7sqEf/R5P7rHMbpIubTEPCi2YPfNCHFrZK57HFizLBwlrwkm", //1234-esther
+        role: 3,
+        state: true,
+      },
+      {
+        id: 18,
+        name: "Nacho",
+        surname: "Grande",
+        dni: "99362399T",
+        email: "nacho@email.com",
+        password:"$2b$10$LMmgBR0jzjNK1T3haCcYD.oOUPb6UWswia9HDVNPW.B5kUDK7hNhS", //1234-nacho
         role: 3,
         state: true,
       }
