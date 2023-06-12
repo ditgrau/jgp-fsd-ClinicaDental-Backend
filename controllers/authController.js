@@ -1,6 +1,6 @@
 //saltRounds = 10; secret = "myword"
 const { User } = require('../models');
-const error = require('../services/error')
+const errorController = require('../services/errorController')
 var jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const authController = {}
@@ -63,9 +63,12 @@ authController.signup = async (req, res) => {
     try {
         //requerimiento al body 
         const { name, surname, dni, role, email, password } = req.body;
+        
         if (!name || !surname || !dni || !email || !password) {
-            return error.emptyFields(res);
+            return errorController.emptyFields(res);
         }
+
+        
         // encriptacion de la contraseña
         const hashedPassword = bcrypt.hashSync(password, 10);
         // valor por defecto para role
@@ -76,7 +79,7 @@ authController.signup = async (req, res) => {
             surname: surname,
             dni: dni,
             role: roleDefault,
-            email: email,
+            email: email.toLowerCase(),
             password: hashedPassword,
         })
 
@@ -99,10 +102,11 @@ authController.signup = async (req, res) => {
             })
         // manejo de error, try/catch 
     } catch (error) {
+        if (error.name === "SequelizeUniqueConstraintError") {
+            return errorController.singleFields(res);
+        }
         return res.status(500).json({
-            sucess: false,
             message: "User cannot register",
-            error: error.name
         })
     }
 }
