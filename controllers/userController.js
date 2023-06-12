@@ -53,9 +53,11 @@ userController.updateProfile = async (req, res) => {
             }
         }
 
-
         const hashedPassword = bcrypt.hashSync(password, 10);
         // primero va la peticion al body, luego el where
+        
+        
+        
         const myProfile = await User.update({
             // update 
             name: name || this.User, // User.name = User (por el modelo(?)) //this.profile (undefined) 
@@ -63,7 +65,8 @@ userController.updateProfile = async (req, res) => {
             dni: dni || this.User,
             email: email || this.User,
             password: hashedPassword || this.User,
-        }, {
+        }, 
+        {
             where: {
                 id: myId
             },

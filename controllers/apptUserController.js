@@ -17,13 +17,6 @@ apptUserController.newAppoint = async (req, res) => {
       }
     )
 
-    // if (Object.values(newAppoint).includes("")) {
-    //   return res.status(400).json({
-    //     success: false,
-    //     message: "Data required"
-    //   }) 
-    // }
-
     return res.json({
       success: true,
       message: `Appointment arranged on ${newAppoint.date} at ${newAppoint.hour} `,
@@ -72,5 +65,56 @@ apptUserController.myAppointments = async (req, res) => {
 
 /////////////////////////////////////////////////////////////
 
+apptUserController.updateAppointment = async (req, res) => {
+  try {
+    //localizamos la cita
+    const myId = req.userId
+    const appointmentId = req.params.id
+    const appointment = await Appointment.findOne({
+      where:
+      {
+        id: appointmentId,
+        userId: myId
+      },
+      attributes:
+      {
+        exclude: ["createdAt", "updatedAt"]
+      }
+    })
+
+    const { dentistId, date, hour } = req.body
+
+    const updateAppoint = await Appointment.update(
+      {
+        dentistId: dentistId || this.Appointment,
+        date: date || this.Appointment,
+        hour: hour || this.Appointment
+      },
+      {
+        where: {
+          id: appointmentId,
+          userId: myId
+        },
+      }
+    )
+
+    return res.json({
+      appointment: appointment,
+      appointmentId: appointmentId,
+      myId: myId,
+      updateAppoint: updateAppoint
+    })
+
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Can not be displayed',
+      error: error.message,
+      error: error.name
+    })
+  }
+}
+
+/////////////////////////////////////////////////////////////
 module.exports = apptUserController;
 

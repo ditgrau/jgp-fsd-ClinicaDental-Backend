@@ -9,6 +9,7 @@ const isUser = require('../middleware/isUser');
 
 router.post('/create', auth, apptUserController.newAppoint);
 router.get('/myAppointments', auth, isUser, apptUserController.myAppointments);
+router.put('/update/:id', auth, apptUserController.updateAppointment);
 
 ////////////////////////////////////////////////////////
 
