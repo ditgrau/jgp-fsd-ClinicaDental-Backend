@@ -1,4 +1,3 @@
-//saltRounds = 10; secret = "myword"
 const { User } = require('../models');
 const errorController = require('../services/errorController')
 var jwt = require('jsonwebtoken');
@@ -41,9 +40,9 @@ authController.login = async (req, res) => {
             message: "Valid credentials, access allowed",
             userLogin:
             {
-                name: userLogin.name,
-                surname: userLogin.surname,
-                email: userLogin.email
+                name: `${userLogin.name} ${userLogin.surname}`,
+                email: userLogin.email,
+                role: userLogin.role 
             },
             token: token
         })

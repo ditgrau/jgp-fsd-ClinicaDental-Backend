@@ -2,6 +2,29 @@ const { User } = require('../models');
 const bcrypt = require('bcrypt');
 const userController = {}
 
+//////////////////////////////////////////////////////
+
+userController.myProfile = async (req, res) => {
+    try {
+        const myId = req.userId //lo saco del token
+        const myProfile = await User.findByPk(myId)
+
+        return res.json({
+                succcess: true,
+                "My profile": myProfile
+            })    
+    } 
+    
+    catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: 'Can not be displayed',
+            error: error.name
+        })
+
+    }
+}
+
 ///////////////////////////////////////////////////////
 
 userController.getAllClients = async (req, res) => {
@@ -68,30 +91,6 @@ userController.getUSerByRole = async (req, res) =>{
             message: 'Can not be displayed',
             error: error.message
         }) 
-    }
-}
-
-//////////////////////////////////////////////////////
-
-userController.myProfile = async (req, res) => {
-    try {
-        const myId = req.userId //lo saco del token
-        const myProfile = await User.findByPk(myId)
-
-        return res.json({
-                succcess: true,
-                message: "Your profile: ",
-                myProfile: myProfile
-            })    
-    } 
-    
-    catch (error) {
-        return res.status(500).json({
-            success: false,
-            message: 'Can not be displayed',
-            error: error.name
-        })
-
     }
 }
 
