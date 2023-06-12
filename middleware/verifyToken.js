@@ -27,10 +27,16 @@ const auth = (req, res, next) => {
         next();
 
     } catch (error) {
+        if (error.name === "JsonWebTokenError") {
+            return res.status(498).json ({
+                success: false,
+                message: "Invalid token, acces denied",
+            })  
+        }
         return res.status(500).json ({
             success: false,
-            message: "Server Error",
-            error: error.message
+            error: error.name,
+            message: "Acces denied"
         })  
     }
 }

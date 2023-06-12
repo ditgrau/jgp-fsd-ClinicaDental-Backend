@@ -21,7 +21,6 @@ userController.myProfile = async (req, res) => {
             message: 'Can not be displayed',
             error: error.name
         })
-
     }
 }
 
