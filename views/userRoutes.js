@@ -2,12 +2,13 @@ const router = require('express').Router();
 const userController = require('../controllers/userController');
 const auth = require('../middleware/verifyToken');
 const isDentist = require('../middleware/isDentist');
+const isAdmin = require('../middleware/isAdmin');
 
 /////////////////////////////////////////////////////////////////
 
 router.get('/clients', auth, isDentist, userController.getAllClients);
 router.get('/myProfile', auth, userController.myProfile);
-router.post('/userRole', auth, userController.getUSerByRole);
+router.post('/userRole', auth, isAdmin, userController.getUSerByRole);
 router.put('/update', auth, userController.updateProfile);
 
 /////////////////////////////////////////////////////////////////

@@ -23,8 +23,8 @@ userController.myProfile = async (req, res) => {
     catch (error) {
         return res.status(500).json({
             success: false,
+            error: error.name,
             message: 'Can not be displayed',
-            error: error.name
         })
     }
 }
@@ -43,7 +43,7 @@ userController.updateProfile = async (req, res) => {
                 return errorController.fieldsPattern(res);
             }
         }
-        
+
         if (password) {
             // validacion formato password
             const passwordRegex = /^(?=.*\d)(?=.*[!@#$%^&*()-_+=])(?=.*[a-zA-Z]).{6,}$/;
@@ -55,25 +55,28 @@ userController.updateProfile = async (req, res) => {
 
         const hashedPassword = bcrypt.hashSync(password, 10);
         // primero va la peticion al body, luego el where
-        
-        
-        
+
         const myProfile = await User.update({
             // update 
-            name: name || this.User, // User.name = User (por el modelo(?)) //this.profile (undefined) 
+            name: name || this.User, // User.name = User // 
             surname: surname || this.User,
             dni: dni || this.User,
             email: email || this.User,
             password: hashedPassword || this.User,
-        }, 
-        {
-            where: {
-                id: myId
-            },
-        }
+        },
+            {
+                where: {
+                    id: myId
+                },
+            }
         )
-
-        const updatedProfile = await User.findByPk(myId)
+        // esta funcion es para que en la res me devuelva los datos nuevos
+        const updatedProfile = await User.findByPk(myId,
+            {
+                attributes: {
+                    exclude: ['password']
+                }
+            })
         return res.json({
             succcess: true,
             message: "Your profile: ",
@@ -107,9 +110,9 @@ userController.getAllClients = async (req, res) => {
             }
         )
         return res.json({
-            sucess: true,
             message: "All results displayed",
-            allClients: allClients
+            allClients: allClients,
+            sucess: true
         })
     } catch (error) {
         res.status(500).json({
@@ -117,7 +120,6 @@ userController.getAllClients = async (req, res) => {
             message: 'Can not be displayed',
             error: error.message
         })
-
     }
 }
 
@@ -125,11 +127,11 @@ userController.getAllClients = async (req, res) => {
 
 userController.getUSerByRole = async (req, res) => {
     try {
-        const { ole } = req.body;
+        const { role } = req.body;
         const usersByRole = await User.findAll(
             {
                 where: {
-                    role: ole
+                    role: role
                 },
                 attributes: {
                     exclude: ["createdAt", "updatedAt", "password"]
