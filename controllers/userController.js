@@ -28,6 +28,47 @@ userController.myProfile = async (req, res) => {
     }
 }
 
+//////////////////////////////////////////////////////
+
+userController.updateProfile = async (req, res) => {
+    try {
+        const myId = req.userId //lo saco del token
+        const { name, surname, dni, email, password } = req.body; 
+        //lo requiero del body como en el registro
+        const hashedPassword = bcrypt.hashSync(password, 10);
+        // primero va la peticion al body, luego el where
+        const myProfile = await User.update({
+             // update 
+            name: name || this.User, // User.name = User (por el modelo(?)) //this.profile (undefined) 
+            surname:surname || this.User,
+            dni: dni || this.User,
+            email: email || this.User, 
+            password: hashedPassword || this.User,
+            },{
+                where: {
+                    id: myId
+                },
+            } 
+        )
+
+        const updatedProfile = await User.findByPk(myId)
+        return res.json({
+                succcess: true,
+                message: "Your profile: ",
+                myProfile: updatedProfile,
+                rowsChanged: myProfile,
+            })    
+    } 
+    
+    catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: 'Can not be displayed',
+            error: error.message
+        })   
+    }
+}
+
 ///////////////////////////////////////////////////////
 
 userController.getAllClients = async (req, res) => {
@@ -94,47 +135,6 @@ userController.getUSerByRole = async (req, res) =>{
             message: 'Can not be displayed',
             error: error.message
         }) 
-    }
-}
-
-//////////////////////////////////////////////////////
-
-userController.updateProfile = async (req, res) => {
-    try {
-        const myId = req.userId //lo saco del token
-        const { name, surname, dni, email, password } = req.body; 
-        //lo requiero del body como en el registro
-        const hashedPassword = bcrypt.hashSync(password, 10);
-        // primero va la peticion al body, luego el where
-        const myProfile = await User.update({
-             // update 
-            name: name || this.User, // User.name = User (por el modelo(?)) //this.profile (undefined) 
-            surname:surname || this.User,
-            dni: dni || this.User,
-            email: email || this.User, 
-            password: hashedPassword || this.User,
-            },{
-                where: {
-                    id: myId
-                },
-            } 
-        )
-
-        const updatedProfile = await User.findByPk(myId)
-        return res.json({
-                succcess: true,
-                message: "Your profile: ",
-                myProfile: updatedProfile,
-                rowsChanged: myProfile,
-            })    
-    } 
-    
-    catch (error) {
-        return res.status(500).json({
-            success: false,
-            message: 'Can not be displayed',
-            error: error.message
-        })   
     }
 }
 

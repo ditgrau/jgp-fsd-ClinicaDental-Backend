@@ -67,9 +67,6 @@ authController.signup = async (req, res) => {
             return errorController.emptyFields(res);
         }
 
-        if (password.length < 5) {
-            return errorController.shortPassword(res);
-        }
         // validacion formato correo
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         const isValidEmail = emailRegex.test(email);

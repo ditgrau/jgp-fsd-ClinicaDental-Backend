@@ -26,14 +26,6 @@ errorController.singleFields = (res) => {
 
 ////////////////////////////////////////////////
 
-errorController.shortPassword = (res) => {
-    return res.status(400).json({
-        Message: "Your password should be longer"
-    })
-}
-
-////////////////////////////////////////////////
-
 errorController.fieldsPattern = (res) => {
     return res.status(400).json({
         Message: "Fields do not comply with the pattern"
