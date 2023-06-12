@@ -7,7 +7,11 @@ const userController = {}
 userController.myProfile = async (req, res) => {
     try {
         const myId = req.userId //lo saco del token
-        const myProfile = await User.findByPk(myId)
+        const myProfile = await User.findByPk(myId, {
+            attributes: {
+                exclude: ['password']
+            }
+        })
 
         return res.json({
                 succcess: true,
