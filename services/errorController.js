@@ -28,7 +28,7 @@ errorController.singleFields = (res) => {
 
 errorController.fieldsPattern = (res) => {
     return res.status(400).json({
-        Message: "Fields do not comply with the pattern"
+        Message: "Email/password fields do not comply with the pattern"
     })
 }
 
