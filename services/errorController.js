@@ -2,6 +2,14 @@ const errorController = {}
 
 ////////////////////////////////////////////////
 
+errorController.badRequest = (res) => {
+    return res.status(400).json({
+        Message: "Invalid credentials for your request"
+    })
+}
+
+////////////////////////////////////////////////
+
 errorController.emptyFields = (res) => {
     return res.status(400).json({
         Message: "Empty fields: you must complete your request"

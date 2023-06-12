@@ -18,13 +18,13 @@ authController.login = async (req, res) => {
             }
         });
         if (!userLogin) {
-            throw new SyntaxError('Invalid credentials correo'); //documentacion js (Lanzando nuestros propios errores/operador "throw")
+            return errorController.badRequest(res);
         }
         // ahora la validacion de la password, almacenada en el registro de la BD
         const checkedPasword = bcrypt.compareSync(password, userLogin.password);
         // si la comparacion retorna false, throw te manda al catch
         if (!checkedPasword) {
-            throw new SyntaxError('Invalid credentials contraseña');
+            return errorController.badRequest(res);
         }
         // si va bien, se genera token 
         const token = jwt.sign(
@@ -38,7 +38,7 @@ authController.login = async (req, res) => {
         // todo valido
         return res.json({
             success: true,
-            message: "Puede acceder",
+            message: "Valid credentials, access allowed",
             userLogin:
             {
                 name: userLogin.name,
@@ -47,11 +47,11 @@ authController.login = async (req, res) => {
             },
             token: token
         })
-        //error 500 - Internal Server Error
+    
     } catch (error) {
         return res.status(500).json({
             success: false,
-            message: "User can be logged",
+            message: "Access denied, unable to log in",
             error: error.message,
         })
     }
@@ -73,7 +73,7 @@ authController.signup = async (req, res) => {
         }
         // validacion formato correo
 
-        
+
         // encriptacion de la contraseña
         const hashedPassword = bcrypt.hashSync(password, 10);
         // valor por defecto para role
