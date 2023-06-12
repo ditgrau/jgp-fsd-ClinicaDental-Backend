@@ -185,6 +185,26 @@ module.exports = {
         password:"$2b$10$LMmgBR0jzjNK1T3haCcYD.oOUPb6UWswia9HDVNPW.B5kUDK7hNhS", //1234-nacho
         role: 3,
         state: true,
+      },
+      {
+        id: 19,
+        name: "Ula",
+        surname: "John",
+        dni: "19872348T",
+        email: "ula@email.com",
+        password:"$2b$10$hzPEWjl49..j7kpsEEhV.e//7VSB0XHKMCbzMS2ZdKJVYeFSVg/G6", //1234-ula
+        role: 2,
+        state: true,
+      },
+      {
+        id: 20,
+        name: "Enric",
+        surname: "Carbonell",
+        dni: "99362399T",
+        email: "enric@email.com",
+        password:"$2b$10$vT/LUwzzgXH8D0FYVLfCDu1PM8YpyErndXpksHBkmXfS2PzNbNLou", //1234-enric
+        role: 2,
+        state: true,
       }
     ])
   },

@@ -36,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
   Dentist.init({
     userId: DataTypes.INTEGER,
     specialtyId: DataTypes.INTEGER,
-    collegiate: DataTypes.INTEGER
+    collegiate: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Dentist',
