@@ -47,30 +47,30 @@ treatmentController.dentistByTreatment = async (req, res) => {
             )
             dentistNames.push(getNames)
 
-        return res.json({
-                    "dentistNames": getNames,
-                    "userId": userIdDentist,
-                    "Info dentistas": detailsDentist,
-                    dentista: dentistBySpecialty,
-                    "Tratamiento":
-                    {
-                        "Nombre": treatBySpecialty.name,
-                        "Precio": treatBySpecialty.price,
-                        "Duracion tratamiento": treatBySpecialty.time
-                    },
-                    "Especialidad": specialty.name,
+            return res.json({
 
-                })
+                "Nombre": `${getNames.name} ${getNames.surname}`,
 
+                "Info dentistas": detailsDentist,
 
-        } catch (error) {
-            return res.status(500).json({
-                success: false,
-                message: 'Can not be displayed',
-                error: error.message
+                "Tratamiento":
+                {
+                    "Nombre": treatBySpecialty.name,
+                    "Precio": treatBySpecialty.price,
+                    "Duracion tratamiento": treatBySpecialty.time
+                },
+                "Especialidad": specialty.name,
             })
         }
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: 'Can not be displayed',
+            error: error.message
+        })
     }
+}
 
 
 ///////////////////////////////////////////
