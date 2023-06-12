@@ -34,7 +34,7 @@ authController.login = async (req, res) => {
                 email: userLogin.email
             },
             process.env.SECRET_WORD);
-            
+
         // todo valido
         return res.json({
             success: true,
@@ -63,10 +63,15 @@ authController.signup = async (req, res) => {
     try {
         //requerimiento al body 
         const { name, surname, dni, role, email, password } = req.body;
-        
+
         if (!name || !surname || !dni || !email || !password) {
             return errorController.emptyFields(res);
         }
+
+        if (password.length < 5) {
+            return errorController.shortPassword(res);
+        }
+        // validacion formato correo
 
         
         // encriptacion de la contraseña
@@ -90,12 +95,11 @@ authController.signup = async (req, res) => {
                         id: newUser.id,
                         role: newUser.role,
                         email: newUser.email,
-                    }, 
+                    },
                     process.env.SECRET_WORD);
 
-                return res.json({
-                    sucess: true,
-                    message: "Registered user",
+                return res.status(201).json({
+                    message: "You have been registered in our application",
                     newUser: newUser,
                     token: token
                 })
@@ -107,6 +111,7 @@ authController.signup = async (req, res) => {
         }
         return res.status(500).json({
             message: "User cannot register",
+            error: error.name
         })
     }
 }
