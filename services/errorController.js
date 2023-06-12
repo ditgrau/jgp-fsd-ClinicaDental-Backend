@@ -34,4 +34,12 @@ errorController.shortPassword = (res) => {
 
 ////////////////////////////////////////////////
 
+errorController.fieldsPattern = (res) => {
+    return res.status(400).json({
+        Message: "Fields do not comply with the pattern"
+    })
+}
+
+////////////////////////////////////////////////
+
 module.exports = errorController;
