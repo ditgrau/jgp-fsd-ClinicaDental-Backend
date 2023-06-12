@@ -69,11 +69,11 @@ apptUserController.updateAppointment = async (req, res) => {
   try {
     //localizamos la cita
     const myId = req.userId
-    const appointmentId = req.params.id
+    const {id} = req.params
     const appointment = await Appointment.findOne({
       where:
       {
-        id: appointmentId,
+        id: id,
         userId: myId
       },
       attributes:
@@ -92,7 +92,7 @@ apptUserController.updateAppointment = async (req, res) => {
       },
       {
         where: {
-          id: appointmentId,
+          id: id,
           userId: myId
         },
       }
@@ -100,7 +100,7 @@ apptUserController.updateAppointment = async (req, res) => {
 
     return res.json({
       appointment: appointment,
-      appointmentId: appointmentId,
+      appointmentId: id,
       myId: myId,
       updateAppoint: updateAppoint
     })
