@@ -3,7 +3,7 @@ const apptDentistController = {};
 
 /////////////////////////////////////////////////////////////
 
-appointmentController.myApptDentist = async (req, res) => {
+apptDentistController.myApptDentist = async (req, res) => {
   try {
     const myId = req.userId
     const myAppointments = await Appointment.findAll({
@@ -34,7 +34,7 @@ appointmentController.myApptDentist = async (req, res) => {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-appointmentController.getAllAppt = async (req, res) => {
+apptDentistController.getAllAppt = async (req, res) => {
   try {
     const allAppt = await Appointment.findAll({
       attributes:
@@ -61,7 +61,7 @@ appointmentController.getAllAppt = async (req, res) => {
 
 ///////////////////////////////////////////////////////
 
-appointmentController.apptById = async (req, res) => {
+apptDentistController.apptById = async (req, res) => {
   try {
     // lo requiero de los query params
     const apptId = req.query.id;

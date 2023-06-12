@@ -36,11 +36,11 @@ userController.getAllClients = async (req, res) => {
 
 userController.getUSerByRole = async (req, res) =>{
     try {
-        const { role } = req.body;
+        const { ole } = req.body;
         const usersByRole = await User.findAll(
         {
             where: {
-                role: role
+                role: ole
             },
             attributes: {
                 exclude: ["createdAt", "updatedAt", "password"]
@@ -136,5 +136,6 @@ userController.updateProfile = async (req, res) => {
     }
 }
 
-///////////////////////////
+//////////////////////////////////////////////////
+
 module.exports = userController;
