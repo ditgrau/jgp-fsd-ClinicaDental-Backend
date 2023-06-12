@@ -1,5 +1,6 @@
 //saltRounds = 10; secret = "myword"
 const { User } = require('../models');
+const error = require('../services/error')
 var jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const authController = {}
@@ -8,7 +9,6 @@ const authController = {}
 
 authController.login = async (req, res) => {
     try {
-        //requerimiento al body
         const { email, password } = req.body
         //funcion login, para encontrar correspondencias por email y password con la BD
         const userLogin = await User.findOne({
@@ -17,7 +17,6 @@ authController.login = async (req, res) => {
                 email: email
             }
         });
-        // si no encuentra el email, responde con mensaje 
         if (!userLogin) {
             throw new SyntaxError('Invalid credentials correo'); //documentacion js (Lanzando nuestros propios errores/operador "throw")
         }
@@ -35,6 +34,7 @@ authController.login = async (req, res) => {
                 email: userLogin.email
             },
             process.env.SECRET_WORD);
+            
         // todo valido
         return res.json({
             success: true,
@@ -63,6 +63,9 @@ authController.signup = async (req, res) => {
     try {
         //requerimiento al body 
         const { name, surname, dni, role, email, password } = req.body;
+        if (!name || !surname || !dni || !email || !password) {
+            return error.emptyFields(res);
+        }
         // encriptacion de la contraseña
         const hashedPassword = bcrypt.hashSync(password, 10);
         // valor por defecto para role
@@ -76,6 +79,7 @@ authController.signup = async (req, res) => {
             email: email,
             password: hashedPassword,
         })
+
             // si va bien, se genera token 
             .then(newUser => {
                 let token = jwt.sign(
@@ -89,7 +93,7 @@ authController.signup = async (req, res) => {
                 return res.json({
                     sucess: true,
                     message: "Registered user",
-                    newUser: newUser, //////////////////////// quitarlo (?)
+                    newUser: newUser,
                     token: token
                 })
             })
