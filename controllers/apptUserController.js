@@ -1,4 +1,5 @@
 const { Appointment } = require('../models');
+const errorController = require('../services/errorController')
 const apptUserController = {};
 
 /////////////////////////////////////////////////////////////
@@ -7,7 +8,12 @@ apptUserController.newAppoint = async (req, res) => {
   try {
     const myId = req.userId //lo saco del token
     //requiero del body
-    const { dentistId, date, hour } = req.body;
+    const { dentistId , date , hour } = req.body;
+
+    if (!dentistId || !date || !hour ) {
+            return errorController.emptyFields(res);
+        }
+
     const newAppoint = await Appointment.create(
       {
         userId: myId,

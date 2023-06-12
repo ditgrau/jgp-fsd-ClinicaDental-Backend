@@ -7,7 +7,7 @@ const isUser = require('../middleware/isUser');
 
 ////////////////////////////////////////////////////////
 
-router.post('/create', auth, apptUserController.newAppoint);
+router.post('/create', auth, isUser, apptUserController.newAppoint);
 router.get('/myAppointments', auth, isUser, apptUserController.myAppointments);
 router.put('/update/:id', auth, isUser, apptUserController.updateAppointment);
 router.delete('/delete/:id', auth, isUser, apptUserController.deleteAppointment);
