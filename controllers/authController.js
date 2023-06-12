@@ -1,5 +1,6 @@
 const { User } = require('../models');
 const errorController = require('../services/errorController')
+const regexController = require('../services/regexController')
 var jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const authController = {}
