@@ -5,7 +5,7 @@ const auth = require('../middleware/verifyToken');
 
 ////////////////////////////////////////////////////////
 
-router.post('/chooseDentist', auth, isUser, treatmentController.dentistByTreatment)
+router.post('/dentistByTreatment', auth, isUser, treatmentController.dentistByTreatment)
 router.get('/allTreatments', auth, treatmentController.allTreatments)
 
 ///////////////////////////////////////////////////////
