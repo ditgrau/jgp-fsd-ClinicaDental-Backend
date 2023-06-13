@@ -12,7 +12,6 @@ __<p align="center">Proyecto 3 - Mastermind - Semana 4</p>__
     <li><a href="#endpoints">Endpoints</a></li>
     <li><a href="#licencia">Licencia</a></li>
     <li><a href="#webgrafia">Webgrafia</a></li>
-    <li><a href="#desarrollo">Desarrollo</a></li>
     <li><a href="#agradecimientos">Agradecimientos</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ol>
@@ -60,35 +59,53 @@ He logrado implementar todas las funcionalidades especificadas, proporcionando a
 <summary>Endpoints</summary>
 
 - AUTH
-    - REGISTER
-
-            POST http://localhost:3000/api/register
-        body:
-        ``` js
-            {
-                "user": "David",
-                "email": "david@david.com",
-                "password": "princes"
-            }
-        ```
+    - SING UP
+            POST http://localhost:3000/signup
 
     - LOGIN
+            POST http://localhost:3000/login 
 
-            POST http://localhost:3000/api/login  
-        body:
-        ``` js
-            {
-                "user": "David",
-                "email": "david@david.com",
-                "password": "princes"
-            }
-        ```
-- RUTINAS
-    - RECUPERAR RUTINAS  
+- USER
+    - MY PROFILE
+            GET http://localhost:3000/user/myProfile
 
-            GET http://localhost:3000/api/rutina
+    - UPDATE MY PROFILE
+            PUT http://localhost:3000/user/update
 
-    - ...
+    - GET ALL CLIENTS
+            GET http://localhost:3000/user/clients
+
+- APPOINTMENT
+    - NEW APPOINTMENT
+            POST http://localhost:3000/appoint/create
+
+    - MY APPOINTMENTS
+            GET http://localhost:3000/appoint/myAppointments
+
+    - APPOINTMENTS PER DENTIST
+            GET http://localhost:3000/appoint/myApptDentist
+
+    - ALL APPOINTMENTS
+            GET http://localhost:3000/appoint/getAllAppt
+
+    - DETAIL APPOINTMENT
+            GET http://localhost:3000/appoint/apptById?id=4
+     
+    - UPDATE MY APPOINTMENT
+            PUT http://localhost:3000/appoint/update:id
+    
+    - DELETE MY APPOINTMENT
+            DELETE http://localhost:3000/appoint/delete:id
+
+- TREATMENT
+    - GET ALL TREATMENT
+            GET http://localhost:3000/treat/allTreatments
+    
+    - DENTIST CHOICE
+            POST http://localhost:3000/treat/chooseDentist
+            
+
+            
 </details>
 
 
