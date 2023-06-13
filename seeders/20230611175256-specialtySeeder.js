@@ -6,18 +6,21 @@ module.exports = {
     await queryInterface.bulkInsert('Specialties', [
       {
         id: 1,
+        name: "You must change your specialty"
+      },{
+        id: 2,
         name: "Ortodoncia"
       },
       {
-        id: 2,
+        id: 3,
         name: "Cirugía oral"
       },
       {
-        id: 3,
+        id: 4,
         name: "Estética"
       },
       {
-        id: 4,
+        id: 5,
         name: "General"
       }
     ])

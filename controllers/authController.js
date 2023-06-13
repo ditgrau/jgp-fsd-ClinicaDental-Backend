@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { User , Dentist} = require('../models');
 const errorController = require('../services/errorController')
 var jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
@@ -42,11 +42,11 @@ authController.login = async (req, res) => {
             {
                 name: `${userLogin.name} ${userLogin.surname}`,
                 email: userLogin.email,
-                role: userLogin.role 
+                role: userLogin.role
             },
             token: token
         })
-    
+
     } catch (error) {
         return res.status(500).json({
             success: false,
@@ -60,13 +60,12 @@ authController.login = async (req, res) => {
 
 authController.signup = async (req, res) => {
     try {
-        //requerimiento al body 
         const { name, surname, dni, role, email, password } = req.body;
 
+        //validacion campo vacio
         if (!name || !surname || !dni || !email || !password) {
             return errorController.emptyFields(res);
         }
-
         // validacion formato correo
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         const isValidEmail = emailRegex.test(email);
@@ -92,34 +91,40 @@ authController.signup = async (req, res) => {
             email: email.toLowerCase(),
             password: hashedPassword,
         })
-
-            // si va bien, se genera token 
-            .then(newUser => {
-                let token = jwt.sign(
-                    {
-                        id: newUser.id,
-                        role: newUser.role,
-                        email: newUser.email,
-                    },
-                    process.env.SECRET_WORD);
-
-                return res.status(201).json({
-                    message: "You have been registered in our application",
-                    newUser: newUser,
-                    token: token
-                })
-            })
-        // manejo de error, try/catch 
-    } catch (error) {
-        if (error.name === "SequelizeUniqueConstraintError") {
-            return errorController.singleFields(res);
-        }
-        return res.status(500).json({
-            message: "User cannot register",
-            error: error.name,
-            error: error.message
+        if (role === "2") {
+            const newDentist = await Dentist.create({
+            userId: newUser.id,
+            specialtyId: 1,
+            collegiate: "fieldNeeded"
         })
+        }
+
+        // si va bien, se genera token 
+        let token = jwt.sign(
+            {
+                id: newUser.id,
+                role: newUser.role,
+                email: newUser.email,
+            },
+            process.env.SECRET_WORD);
+
+        return res.status(201).json({
+            message: "You have been registered in our application",
+            newUser: newUser,
+            token: token
+        })
+
+    // manejo de error, try/catch 
+} catch (error) {
+    if (error.name === "SequelizeUniqueConstraintError") {
+        return errorController.singleFields(res);
     }
+    return res.status(500).json({
+        message: "User cannot register",
+        error: error.name,
+        error: error.message
+    })
+}
 }
 
 ///////////////////////////
