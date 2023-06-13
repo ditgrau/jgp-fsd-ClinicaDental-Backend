@@ -16,14 +16,12 @@ treatmentController.dentistByTreatment = async (req, res) => {
         // a partid de los resultados saco la especialidad
         const specialty = await Specialty.findByPk(treatBySpecialty.specialtyId)
         // y los dentistas que son especialistas
-        const dentistBySpecialty = await Dentist.findAll(
-            {
+        const dentistBySpecialty = await Dentist.findAll({
                 where:
                 {
                     specialtyId: treatBySpecialty.specialtyId
                 }
-            }
-        );
+            });
         // de la tabla dentistas me interesan estos dos campos
         const detailsDentist = dentistBySpecialty.map(dentist => (
             {
@@ -51,9 +49,7 @@ treatmentController.dentistByTreatment = async (req, res) => {
             return res.json({
 
                 "Nombre": `${getNames.name} ${getNames.surname}`,
-
                 "Info dentistas": detailsDentist,
-
                 "Tratamiento":
                 {
                     "Nombre": treatBySpecialty.name,
@@ -82,9 +78,9 @@ treatmentController.allTreatments = async (req, res) => {
         const allTreatments = await Treatment.findAll({
             attributes: {
                 exclude: ["createdAt", "updatedAt"]
-
             }
         })
+        
         return res.json({
             "All Treatments": allTreatments
         })

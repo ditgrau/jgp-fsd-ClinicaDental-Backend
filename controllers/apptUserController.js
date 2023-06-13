@@ -25,7 +25,7 @@ apptUserController.newAppoint = async (req, res) => {
         date: date,
         hour: hour
       }
-    )
+)
 
     return res.json({
       success: true,
