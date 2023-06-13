@@ -16,6 +16,7 @@ module.exports = {
           key: "id"
         },
         allowNull: false,
+        unique: true, //
       },
       specialtyId: {
         type: Sequelize.INTEGER,
