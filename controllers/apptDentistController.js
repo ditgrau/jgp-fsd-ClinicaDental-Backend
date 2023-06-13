@@ -13,7 +13,7 @@ apptDentistController.myApptDentist = async (req, res) => {
       },
       attributes:
       {
-        exclude: ["createdAt", "updatedAt", "userId"]
+        exclude: ["createdAt", "updatedAt"]
       }
     })
 
@@ -56,7 +56,6 @@ apptDentistController.getAllAppt = async (req, res) => {
       error: error.message
     })
   }
-
 }
 
 ///////////////////////////////////////////////////////
@@ -66,19 +65,22 @@ apptDentistController.apptById = async (req, res) => {
     // lo requiero de los query params
     const apptId = req.query.id;
     // se relaciona con la id del appointment
-    const apptById = await Appointment.findAll({
+    const apptById = await Appointment.findOne({
       where:
       {
         id: apptId
       },
     })
+
+    if(!apptById){
+      return errorController.invalidData()
+      }
+
     return res.json({
-      sucess: true,
       message: "All results by role displayed",
       "Dentist area - Appointment details": apptById
     })
 
-    // TENGO QUE CAPTURAR ERRORES Y EXCEPCIONES
   } catch (error) {
     res.status(500).json({
       success: false,

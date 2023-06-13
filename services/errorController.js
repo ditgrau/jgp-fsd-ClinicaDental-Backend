@@ -34,4 +34,20 @@ errorController.fieldsPattern = (res) => {
 
 ////////////////////////////////////////////////
 
+errorController.timeHour = (res) => {
+    return res.status(400).json({
+        Message: `Incorrect time value or format. Reminder: 00:00:00`
+    })
+}
+
+////////////////////////////////////////////////
+
+errorController.invalidData = (res) => {
+    return res.status(400).json({
+        Message: `Invalid data`
+    })
+}
+
+////////////////////////////////////////////////
+
 module.exports = errorController;

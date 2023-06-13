@@ -8,11 +8,15 @@ apptUserController.newAppoint = async (req, res) => {
   try {
     const myId = req.userId //lo saco del token
     //requiero del body
-    const { dentistId , date , hour } = req.body;
+    const { dentistId, date, hour } = req.body;
 
-    if (!dentistId || !date || !hour ) {
-            return errorController.emptyFields(res);
-        }
+    if (!dentistId || !date || !hour) {
+      return errorController.emptyFields(res);
+    }
+
+    if (hour > '23:59:00') {
+      return errorController.timeHour(res);
+    }
 
     const newAppoint = await Appointment.create(
       {
@@ -62,9 +66,9 @@ apptUserController.myAppointments = async (req, res) => {
 
   } catch (error) {
     res.status(500).json({
-      success: false,
       message: 'Can not be displayed',
-      error: error.message
+      error: error.message,
+      success: false,
     })
   }
 }
@@ -75,7 +79,7 @@ apptUserController.updateAppointment = async (req, res) => {
   try {
     //localizamos la cita
     const myId = req.userId
-    const {id} = req.params
+    const { id } = req.params
     const appointment = await Appointment.findOne({
       where:
       {
@@ -89,6 +93,10 @@ apptUserController.updateAppointment = async (req, res) => {
     })
 
     const { dentistId, date, hour } = req.body
+
+    if (hour > '23:59:00') {
+      return errorController.timeHour(res);
+    }
 
     const updateAppoint = await Appointment.update(
       {
@@ -104,11 +112,14 @@ apptUserController.updateAppointment = async (req, res) => {
       }
     )
 
+    const finalAppoint = await Appointment.findByPk(id)
     return res.json({
-      appointment: appointment,
-      appointmentId: id,
-      myId: myId,
-      updateAppoint: updateAppoint
+      "Updated Appointment": {
+        dentistId: finalAppoint.dentistId,
+        date: finalAppoint.date,
+        hour: finalAppoint.hour
+      },
+      "Changed records": updateAppoint,
     })
 
   } catch (error) {
@@ -126,8 +137,8 @@ apptUserController.updateAppointment = async (req, res) => {
 apptUserController.deleteAppointment = async (req, res) => {
   try {
     const myId = req.userId
-    const {id} = req.params
-    
+    const { id } = req.params
+
     const appointment = await Appointment.findOne({
       where:
       {
@@ -142,7 +153,13 @@ apptUserController.deleteAppointment = async (req, res) => {
         userId: myId
       }
     })
+
+    if (appointment=== null) {
+      return errorController.badRequest(res)
+    }
+    
     return res.json({
+      message: 'Your appointment has been deleted',
       appointment: appointment,
       appointmentDelete: appointmentDelete,
     })
@@ -156,7 +173,7 @@ apptUserController.deleteAppointment = async (req, res) => {
     })
   }
 }
-  
+
 /////////////////////////////////////////////////////////////
 module.exports = apptUserController;
 
