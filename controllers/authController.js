@@ -60,7 +60,7 @@ authController.login = async (req, res) => {
 
 authController.signup = async (req, res) => {
     try {
-        const { name, surname, dni, role, email, password } = req.body;
+        const { name, surname, dni, email, password } = req.body;
 
         //validacion campo vacio
         if (!name || !surname || !dni || !email || !password) {
@@ -81,7 +81,7 @@ authController.signup = async (req, res) => {
         // encriptacion de la contraseña
         const hashedPassword = bcrypt.hashSync(password, 10);
         // valor por defecto para role
-        const roleDefault = role || 3;
+        const roleDefault = 3;
         // crear nuevo usuario
         const newUser = await User.create({
             name: name,
@@ -91,13 +91,6 @@ authController.signup = async (req, res) => {
             email: email.toLowerCase(),
             password: hashedPassword,
         })
-        if (role === "2") {
-            const newDentist = await Dentist.create({
-            userId: newUser.id,
-            specialtyId: 1,
-            collegiate: "fieldNeeded"
-        })
-        }
 
         // si va bien, se genera token 
         let token = jwt.sign(
