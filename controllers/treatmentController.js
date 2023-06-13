@@ -1,4 +1,5 @@
 const { Treatment, Dentist, Specialty, User } = require('../models');
+const errorController = require('../services/errorController')
 const treatmentController = {};
 
 ///////////////////////////////////////////
@@ -8,9 +9,9 @@ treatmentController.dentistByTreatment = async (req, res) => {
         // requiero por el body el numero de id del tratamiento
         const { idQuery } = req.body
         const treatBySpecialty = await Treatment.findByPk(idQuery)
-        // manejo de excepciones de la documentacion
+    
         if (treatBySpecialty === null) {
-            console.log('Not found!');
+            return errorController.invalidData(res)
         }
         // a partid de los resultados saco la especialidad
         const specialty = await Specialty.findByPk(treatBySpecialty.specialtyId)
@@ -63,6 +64,7 @@ treatmentController.dentistByTreatment = async (req, res) => {
             })
         }
 
+
     } catch (error) {
         return res.status(500).json({
             success: false,
@@ -72,6 +74,29 @@ treatmentController.dentistByTreatment = async (req, res) => {
     }
 }
 
+///////////////////////////////////////////
+
+treatmentController.allTreatments = async (req, res) => {
+    try {
+
+        const allTreatments = await Treatment.findAll({
+            attributes: {
+                exclude: ["createdAt", "updatedAt"]
+
+            }
+        })
+        return res.json({
+            "All Treatments": allTreatments
+        })
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Something went wrong",
+            error: error.name
+        })
+    }
+}
 
 ///////////////////////////////////////////
 

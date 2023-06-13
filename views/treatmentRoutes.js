@@ -1,9 +1,12 @@
 const router = require('express').Router();
 const treatmentController = require('../controllers/treatmentController');
+const isUser = require('../middleware/isUser');
+const auth = require('../middleware/verifyToken');
 
 ////////////////////////////////////////////////////////
 
-router.post('/chooseDentist', treatmentController.dentistByTreatment)
+router.post('/chooseDentist', auth, isUser, treatmentController.dentistByTreatment)
+router.get('/allTreatments', auth, treatmentController.allTreatments)
 
 ///////////////////////////////////////////////////////
 
