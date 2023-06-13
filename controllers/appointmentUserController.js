@@ -1,10 +1,10 @@
 const { Appointment } = require('../models');
 const errorController = require('../services/errorController')
-const apptUserController = {};
+const appointmentUserController = {};
 
 /////////////////////////////////////////////////////////////
 
-apptUserController.newAppoint = async (req, res) => {
+appointmentUserController.newAppoint = async (req, res) => {
   try {
     const myId = req.userId //lo saco del token
     //requiero del body
@@ -44,7 +44,7 @@ apptUserController.newAppoint = async (req, res) => {
 
 /////////////////////////////////////////////////////////////
 
-apptUserController.myAppointments = async (req, res) => {
+appointmentUserController.myAppointments = async (req, res) => {
   try {
     const myId = req.userId
     const myAppointments = await Appointment.findAll({
@@ -75,7 +75,7 @@ apptUserController.myAppointments = async (req, res) => {
 
 /////////////////////////////////////////////////////////////
 
-apptUserController.updateAppointment = async (req, res) => {
+appointmentUserController.updateAppointment = async (req, res) => {
   try {
     //localizamos la cita
     const myId = req.userId
@@ -134,7 +134,7 @@ apptUserController.updateAppointment = async (req, res) => {
 
 /////////////////////////////////////////////////////////////
 
-apptUserController.deleteAppointment = async (req, res) => {
+appointmentUserController.deleteAppointment = async (req, res) => {
   try {
     const myId = req.userId
     const { id } = req.params
@@ -175,5 +175,5 @@ apptUserController.deleteAppointment = async (req, res) => {
 }
 
 /////////////////////////////////////////////////////////////
-module.exports = apptUserController;
+module.exports = appointmentUserController;
 

@@ -1,22 +1,22 @@
 const router = require('express').Router();
-const apptDentistController = require('../controllers/apptDentistController');
-const apptUserController = require('../controllers/apptUserController');
+const appointmentDentistController = require('../controllers/appointmentDentistController');
+const appointmentUserController = require('../controllers/appointmentUserController');
 const auth = require('../middleware/verifyToken');
 const isDentist = require('../middleware/isDentist');
 const isUser = require('../middleware/isUser');
 
 ////////////////////////////////////////////////////////
 
-router.post('/create', auth, isUser, apptUserController.newAppoint);
-router.get('/myAppointments', auth, isUser, apptUserController.myAppointments);
-router.put('/update/:id', auth, isUser, apptUserController.updateAppointment);
-router.delete('/delete/:id', auth, isUser, apptUserController.deleteAppointment);
+router.post('/create', auth, isUser, appointmentUserController.newAppoint);
+router.get('/myAppointments', auth, isUser, appointmentUserController.myAppointments);
+router.put('/update/:id', auth, isUser, appointmentUserController.updateAppointment);
+router.delete('/delete/:id', auth, isUser, appointmentUserController.deleteAppointment);
 
 ////////////////////////////////////////////////////////
 
-router.get('/myApptDentist', auth, isDentist, apptDentistController.myApptDentist);
-router.get('/getAllAppt', auth, isDentist, apptDentistController.getAllAppt);
-router.get('/apptById', auth, isDentist, apptDentistController.apptById);
+router.get('/myApptDentist', auth, isDentist, appointmentDentistController.myApptDentist);
+router.get('/getAllAppt', auth, isDentist, appointmentDentistController.getAllAppt);
+router.get('/apptById', auth, isDentist, appointmentDentistController.apptById);
 
 ////////////////////////////////////////////////////////
 

@@ -1,9 +1,9 @@
 const { Appointment } = require('../models');
-const apptDentistController = {};
+const appointmentDentistController = {};
 
 /////////////////////////////////////////////////////////////
 
-apptDentistController.myApptDentist = async (req, res) => {
+appointmentDentistController.myApptDentist = async (req, res) => {
   try {
     const myId = req.userId
     const myAppointments = await Appointment.findAll({
@@ -34,7 +34,7 @@ apptDentistController.myApptDentist = async (req, res) => {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-apptDentistController.getAllAppt = async (req, res) => {
+appointmentDentistController.getAllAppt = async (req, res) => {
   try {
     const allAppt = await Appointment.findAll({
       attributes:
@@ -60,7 +60,7 @@ apptDentistController.getAllAppt = async (req, res) => {
 
 ///////////////////////////////////////////////////////
 
-apptDentistController.apptById = async (req, res) => {
+appointmentDentistController.apptById = async (req, res) => {
   try {
     // lo requiero de los query params
     const apptId = req.query.id;
@@ -92,4 +92,4 @@ apptDentistController.apptById = async (req, res) => {
 
 ///////////////////////////////////////////////////////
 
-module.exports = apptDentistController;
+module.exports = appointmentDentistController;

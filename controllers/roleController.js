@@ -1,8 +1,8 @@
 const { Role } = require('../models');
 const roleController = {};
 
-///////////////////////////
-// obtener todos los roles 
+////////////////////////////////////////////////////////////////////
+
 roleController.getAllRoles = async (req, res) => {
     try {
         const allRoles = await Role.findAll(
@@ -29,35 +29,30 @@ roleController.getAllRoles = async (req, res) => {
     }
 }
 
-// funcion para crear un nuevo rol 
+////////////////////////////////////////////////////////////////////
+
 roleController.createRole = async (req, res) => {
     try {
         const { name } = req.body
-
-        const newRole = await Role.create(
-            {
+        const newRole = await Role.create({
                 name: name,
-            }
-        )
+            })
 
-        return res.json(
-            {
+        return res.json({
                 sucess: true,
                 message: "New role created",
                 data: newRole
-            }
-        )
+            })
 
-    } catch (error) {
+    }catch (error) {
         return res.status(500).json({
             success: false,
             message: "Role can not be created",
             error: error.message
         })
-
     }
-
 }
 
-///////////////////////////
+////////////////////////////////////////////////////////////////////
+
 module.exports = roleController;
