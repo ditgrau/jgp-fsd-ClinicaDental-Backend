@@ -1,6 +1,6 @@
-const { User } = require('../models');
+const { User } = require('../../models');
 const bcrypt = require('bcrypt');
-const errorController = require('../services/errorController');
+const errorController = require('../../services/errorController');
 const clientUserController = {};
 
 ////////////////////////////////////////////////////////////////////

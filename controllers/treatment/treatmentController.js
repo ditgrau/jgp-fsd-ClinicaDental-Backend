@@ -1,5 +1,5 @@
-const { Treatment, Dentist, Specialty, User } = require('../models');
-const errorController = require('../services/errorController')
+const { Treatment, Dentist, Specialty, User } = require('../../models');
+const errorController = require('../../services/errorController')
 const treatmentController = {};
 
 ///////////////////////////////////////////
