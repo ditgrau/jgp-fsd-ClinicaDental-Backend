@@ -1,4 +1,4 @@
-const { Appointment , User } = require('../../models');
+const { Appointment , User, Treatment } = require('../../models');
 const appointmentDentistController = {};
 
 /////////////////////////////////////////////////////////////
@@ -23,6 +23,10 @@ appointmentDentistController.appointmentsDentist = async (req, res) => {
         {
           model: User,
           attributes: ['name', 'surname']
+        },
+        {
+          model: Treatment,
+          attributes: ['name']
         }
       ]
     })

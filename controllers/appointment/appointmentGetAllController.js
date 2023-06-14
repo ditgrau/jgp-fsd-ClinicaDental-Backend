@@ -1,4 +1,4 @@
-const { Appointment , User, Dentist } = require('../../models');
+const { Appointment , User , Dentist , Treatment } = require('../../models');
 const appointmentGetAllController = {};
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6,24 +6,28 @@ const appointmentGetAllController = {};
 appointmentGetAllController.getAllAppointments = async (req, res) => {
     try {
         const allAppt = await Appointment.findAll({
-            attributes: 
+            attributes:
             {
                 exclude: ["createdAt", "updatedAt"]
             },
             include: [
                 {
                     model: User,
-                    attributes : ['name', 'surname']
+                    attributes: ['name', 'surname']
                 },
                 {
                     model: Dentist,
-                    attributes: ['userId'],
+                    attributes: ['collegiate'],
                     include: [
                         {
                             model: User,
-                            attributes : ['name', 'surname']
+                            attributes: ['name', 'surname']
                         }
                     ]
+                },
+                {
+                    model: Treatment,
+                    attributes: ['name']
                 }
             ]
         });

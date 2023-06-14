@@ -1,4 +1,4 @@
-const { Appointment } = require('../../models');
+const { Appointment , Treatment , Dentist , User } = require('../../models');
 const errorController = require('../../services/errorController')
 const appointmentGetMineController = {};
 
@@ -15,7 +15,23 @@ appointmentGetMineController.myAppointments = async (req, res) => {
       attributes:
       {
         exclude: ["createdAt", "updatedAt", "userId"]
-      }
+      },
+      include: [
+        {
+          model: Treatment,
+          attributes: ['name']
+        },
+        {
+          model: Dentist,
+          attributes: ['collegiate'],
+          include: [
+              {
+                  model: User,
+                  attributes: ['name', 'surname']
+              }
+          ]
+      },
+      ]
     })
 
     return res.json({

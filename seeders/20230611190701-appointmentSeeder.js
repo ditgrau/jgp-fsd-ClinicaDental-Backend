@@ -40,7 +40,7 @@ module.exports = {
         id: 5,
         userId: 7,
         dentistId: 1, //ona
-        treatmentId: 4, //revision orto //2.ortodoncia
+        treatmentId: 6, //revision orto //2.ortodoncia
         date: '2023-07-09',
         hour: '10:30:00'
       },
