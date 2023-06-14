@@ -5,13 +5,13 @@ const isUser = require('../middleware/isUser');
 
 ////////////////////////////////////////////////////////
 
-const appointmentByIdController = require('../controllers/appointmentByIdController');
-const appointmentDeleteController = require('../controllers/appointmentDeleteController');
-const appointmentDentistController = require('../controllers/appointmentDentistController');
-const appointmentGetAllController = require('../controllers/appointmentGetAllController');
-const appointmentGetMineController = require('../controllers/appointmentGetMineController');
-const appointmentNewController = require('../controllers/appointmentNewController');
-const appointmentUpdateController = require('../controllers/appointmentUpdateController');
+const appointmentByIdController = require('../controllers/appointment/appointmentByIdController');
+const appointmentDeleteController = require('../controllers/appointment/appointmentDeleteController');
+const appointmentDentistController = require('../controllers/appointment/appointmentDentistController');
+const appointmentGetAllController = require('../controllers/appointment/appointmentGetAllController');
+const appointmentGetMineController = require('../controllers/appointment/appointmentGetMineController');
+const appointmentNewController = require('../controllers/appointment/appointmentNewController');
+const appointmentUpdateController = require('../controllers/appointment/appointmentUpdateController');
 
 
 ////////////////////////////////////////////////////////

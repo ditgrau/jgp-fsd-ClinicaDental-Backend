@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const dentistUpdateController = require('../controllers/dentistUpdateController');
+const dentistUpdateController = require('../controllers/dentist/dentistUpdateController');
 const auth = require('../middleware/verifyToken');
 const isDentist = require('../middleware/isDentist');
 

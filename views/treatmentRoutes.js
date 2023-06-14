@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const treatmentDentistController = require('../controllers/treatmentDentistController');
-const treatmentGetAllController = require('../controllers/treatmentGetAllController');
+const treatmentDentistController = require('../controllers/treatment/treatmentDentistController');
+const treatmentGetAllController = require('../controllers/treatment/treatmentGetAllController');
 const isUser = require('../middleware/isUser');
 const auth = require('../middleware/verifyToken');
 

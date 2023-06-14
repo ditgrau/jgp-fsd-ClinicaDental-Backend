@@ -1,5 +1,5 @@
-const { Appointment } = require('../models');
-const errorController = require('../services/errorController')
+const { Appointment } = require('../../models');
+const errorController = require('../../services/errorController')
 const appointmentGetMineController = {};
 
 /////////////////////////////////////////////////////////////
