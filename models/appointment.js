@@ -24,11 +24,19 @@ module.exports = (sequelize, DataTypes) => {
           foreignKey: 'dentistId'
         }
       )
+
+      Appointment.belongsTo(
+        models.Treatment,
+        {
+          foreignKey: 'treatmentId'
+        }
+      )
     }
   }
   Appointment.init({
     userId: DataTypes.INTEGER,
     dentistId: DataTypes.INTEGER,
+    treatmentId: DataTypes.INTEGER,
     date: DataTypes.DATEONLY,
     hour: DataTypes.TIME
   }, {
