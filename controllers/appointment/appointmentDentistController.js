@@ -6,6 +6,10 @@ const appointmentDentistController = {};
 appointmentDentistController.appointmentsDentist = async (req, res) => {
   try {
     const myId = req.userId
+    const myName = await User.findByPk(myId,
+    {
+      attributes: ['name', 'surname']
+    })
     const myAppointments = await Appointment.findAll({
       where:
       {
@@ -25,6 +29,7 @@ appointmentDentistController.appointmentsDentist = async (req, res) => {
 
     return res.json({
       success: true,
+      nameDentist: myName,
       message: `Your ${myAppointments.length} dental appointments`,
       "Dentist area - My appointments": myAppointments
     })
