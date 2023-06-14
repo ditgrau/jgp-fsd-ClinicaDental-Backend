@@ -83,13 +83,15 @@ He logrado implementar todas las funcionalidades especificadas, proporcionando a
             GET http://localhost:3000/appoint/myAppointments
 
     - APPOINTMENTS PER DENTIST: 
-    Búsqueda de nombre del dentista y sus appointments con nombre de paciente.
+    Búsqueda de nombre del dentista, cuantas citas tiene, el detalle de las citas con nombre de paciente.
             GET http://localhost:3000/appoint/myApptDentist
 
-    - ALL APPOINTMENTS
+    - ALL APPOINTMENTS:
+    Todas las citas de la consulta con nombre de paciente y nombre de dentista
             GET http://localhost:3000/appoint/getAllAppt
 
     - DETAIL APPOINTMENT
+    
             GET http://localhost:3000/appoint/apptById?id=4
      
     - UPDATE MY APPOINTMENT
