@@ -1,12 +1,13 @@
 const router = require('express').Router();
-const treatmentController = require('../controllers/treatmentController');
+const treatmentDentistController = require('../controllers/treatmentDentistController');
+const treatmentGetAllController = require('../controllers/treatmentGetAllController');
 const isUser = require('../middleware/isUser');
 const auth = require('../middleware/verifyToken');
 
 ////////////////////////////////////////////////////////
 
-router.post('/dentistByTreatment', auth, isUser, treatmentController.dentistByTreatment)
-router.get('/allTreatments', auth, treatmentController.allTreatments)
+router.post('/dentistByTreatment', auth, isUser, treatmentDentistController.dentistByTreatment)
+router.get('/getAll', auth, treatmentGetAllController.getAllTreatments)
 
 ///////////////////////////////////////////////////////
 
