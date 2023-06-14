@@ -1,10 +1,10 @@
 const { Treatment, Dentist, Specialty, User } = require('../../models');
 const errorController = require('../../services/errorController')
-const treatmentController = {};
+const treatmentDentistController = {};
 
 ///////////////////////////////////////////
 
-treatmentController.dentistByTreatment = async (req, res) => {
+treatmentDentistController.dentistByTreatment = async (req, res) => {
     try {
         // requiero por el body el numero de id del tratamiento
         const { idTreatment } = req.body
@@ -51,28 +51,4 @@ treatmentController.dentistByTreatment = async (req, res) => {
 
 ///////////////////////////////////////////
 
-treatmentController.allTreatments = async (req, res) => {
-    try {
-
-        const allTreatments = await Treatment.findAll({
-            attributes: {
-                exclude: ["createdAt", "updatedAt"]
-            }
-        })
-
-        return res.json({
-            "All Treatments": allTreatments
-        })
-
-    } catch (error) {
-        return res.status(500).json({
-            success: false,
-            message: "Something went wrong",
-            error: error.name
-        })
-    }
-}
-
-///////////////////////////////////////////
-
-module.exports = treatmentController;
+module.exports = treatmentDentistController;
