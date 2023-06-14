@@ -1,5 +1,4 @@
-const { Treatment } = require('../../models');
-const errorController = require('../../services/errorController')
+const { Treatment , Specialty , Dentist , User } = require('../../models');
 const treatmentGetAllController = {};
 
 ///////////////////////////////////////////
@@ -10,18 +9,34 @@ treatmentGetAllController.getAllTreatments = async (req, res) => {
         const allTreatments = await Treatment.findAll({
             attributes: {
                 exclude: ["createdAt", "updatedAt"]
+            },
+            include: {
+                model: Specialty,
+                attributes: ['name', 'id'],
+                include: [
+                    {
+                        model: Dentist,
+                        attributes: ['collegiate', 'userId'],
+                        include: [
+                            {
+                                model: User,
+                                attributes: ['name' , 'surname' ]
+                            }
+                        ]
+                    }
+                ]
             }
         })
 
         return res.json({
-            "All Treatments": allTreatments
+            allTreatments: allTreatments
         })
 
     } catch (error) {
         return res.status(500).json({
             success: false,
             message: "Something went wrong",
-            error: error.name
+            error: error.message
         })
     }
 }

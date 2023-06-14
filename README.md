@@ -81,6 +81,7 @@ He logrado implementar todas las funcionalidades especificadas, proporcionando a
             POST http://localhost:3000/appoint/create
 
     - MY APPOINTMENTS:
+    Todas mis citas con dentista y tratamiento
             GET http://localhost:3000/appoint/myAppointments
 
     - APPOINTMENTS PER DENTIST: 
@@ -103,7 +104,8 @@ He logrado implementar todas las funcionalidades especificadas, proporcionando a
             DELETE http://localhost:3000/appoint/delete:id
 
 - TREATMENT
-    - GET ALL TREATMENT
+    - GET ALL TREATMENTS
+    Listado de tratamientos, con especialidad y dentistas que lo realizan
             GET http://localhost:3000/treat/allTreatments
     
     - DENTIST CHOICE
