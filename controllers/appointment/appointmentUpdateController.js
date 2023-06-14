@@ -1,4 +1,4 @@
-const { Appointment } = require('../../models');
+const { Appointment, Treatment, Dentist } = require('../../models');
 const errorController = require('../../services/errorController')
 const appointmentUpdateController = {};
 
@@ -9,15 +9,34 @@ appointmentUpdateController.updateAppointment = async (req, res) => {
         //localizamos la cita
         const myId = req.userId
         const { id } = req.params
-        const { dentistId, date, hour } = req.body
+        const { dentistId, treatmentId, date, hour } = req.body
+        const choosenTreatment = await Treatment.findByPk(treatmentId,
+            {
+                attributes:
+                {
+                    exclude: ["createdAt", "updatedAt"]
+                }
+            });
+        const choosenDentist = await Dentist.findByPk(dentistId)
 
-        if (hour > '23:59:00') {
+        if (choosenTreatment.specialtyId !== choosenDentist.specialtyId) {
+            return res.json({
+                message: "Invalid option (dentist/treatment)"
+            })
+        }
+
+        if (hour > '19:30:00' && hour < '09:00:00') {
             return errorController.timeHour(res);
+        }
+
+        if (choosenTreatment === null || choosenDentist === null) {
+            return errorController.emptyFields(res);
         }
 
         const updateAppoint = await Appointment.update(
             {
                 dentistId: dentistId || this.Appointment,
+                treatmentId: treatmentId || this.Appointment,
                 date: date || this.Appointment,
                 hour: hour || this.Appointment
             },
@@ -33,8 +52,10 @@ appointmentUpdateController.updateAppointment = async (req, res) => {
         return res.json({
             "Updated Appointment": {
                 dentistId: finalAppoint.dentistId,
+                treatmentId: finalAppoint.treatmentId,
                 date: finalAppoint.date,
-                hour: finalAppoint.hour
+                hour: finalAppoint.hour,
+                choosenTreatment: choosenTreatment
             },
             "Changed records": updateAppoint,
         })
@@ -44,7 +65,6 @@ appointmentUpdateController.updateAppointment = async (req, res) => {
             success: false,
             message: 'Can not be displayed',
             error: error.message,
-            error: error.name
         })
     }
 }

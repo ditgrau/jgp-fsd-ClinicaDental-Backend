@@ -94,7 +94,8 @@ He logrado implementar todas las funcionalidades especificadas, proporcionando a
     
             GET http://localhost:3000/appoint/apptById?id=4
      
-    - UPDATE MY APPOINTMENT
+    - UPDATE MY APPOINTMENT:
+    Update de la cita, con validacion por coincidencia en especialidad entre el tratamiento y el dentista
             PUT http://localhost:3000/appoint/update:id
     
     - DELETE MY APPOINTMENT
