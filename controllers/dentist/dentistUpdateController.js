@@ -1,9 +1,9 @@
 const { Dentist } = require('../../models');
-const dentistController = {};
+const dentistUpdateController = {};
 
 //////////////////////////////////////////////////
 
-dentistController.updateDentistProfile = async (req, res) => {
+dentistUpdateController.updateDentistProfile = async (req, res) => {
     try {
         const myId = req.userId
         const { specialtyId, collegiate } = req.body
@@ -47,4 +47,4 @@ dentistController.updateDentistProfile = async (req, res) => {
 
 /////////////////////////////////////////////////
 
-module.exports = dentistController;
+module.exports = dentistUpdateController;
