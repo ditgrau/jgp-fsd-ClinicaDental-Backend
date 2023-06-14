@@ -1,4 +1,4 @@
-const { Appointment } = require('../../models');
+const { Appointment , Treatment , Dentist , User , Specialty} = require('../../models');
 const appointmentByIdController = {};
 
 ///////////////////////////////////////////////////////
@@ -13,6 +13,32 @@ appointmentByIdController.appointmentById = async (req, res) => {
             {
                 id: apptId
             },
+            include: [
+                {
+                    model: Treatment,
+                    attributes: ['name', 'specialtyId'],
+                    include: [
+                        {
+                            model: Specialty,
+                            attributes: ['name']
+                        }
+                    ]
+                },
+                {
+                    model: Dentist,
+                    attributes: ['collegiate'],
+                    include: [
+                        {
+                            model: User,
+                            attributes: ['name', 'surname']
+                        }
+                    ]
+                },
+                {
+                    model: User,
+                    attributes: ['name', 'surname', 'email'],
+                },
+            ]
         })
 
         if (!apptById) {

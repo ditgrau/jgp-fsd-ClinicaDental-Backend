@@ -76,10 +76,11 @@ He logrado implementar todas las funcionalidades especificadas, proporcionando a
             GET http://localhost:3000/user/clients
 
 - APPOINTMENT
-    - NEW APPOINTMENT
+    - NEW APPOINTMENT:
+    Creacion de nueva cita con coincidencia de especailidad entre tratamiento y dentista, nombre del tratamiento y nombre del dentista.
             POST http://localhost:3000/appoint/create
 
-    - MY APPOINTMENTS
+    - MY APPOINTMENTS:
             GET http://localhost:3000/appoint/myAppointments
 
     - APPOINTMENTS PER DENTIST: 
@@ -91,7 +92,7 @@ He logrado implementar todas las funcionalidades especificadas, proporcionando a
             GET http://localhost:3000/appoint/getAllAppt
 
     - DETAIL APPOINTMENT
-    
+    Detalle de la cita, especialidad, tratamiento, dentista y user
             GET http://localhost:3000/appoint/apptById?id=4
      
     - UPDATE MY APPOINTMENT:
