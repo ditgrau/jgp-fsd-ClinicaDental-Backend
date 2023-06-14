@@ -1,4 +1,4 @@
-const { Appointment } = require('../../models');
+const { Appointment , Treatment , Dentist , User } = require('../../models');
 const errorController = require('../../services/errorController')
 const appointmentNewController = {};
 
@@ -8,13 +8,33 @@ appointmentNewController.newAppointment = async (req, res) => {
     try {
         const myId = req.userId //lo saco del token
         //requiero del body
-        const { dentistId, date, hour } = req.body;
+        const { dentistId, treatmentId, date, hour } = req.body;
+        const choosenTreatment = await Treatment.findByPk(treatmentId,
+            {
+                attributes:
+                {
+                    exclude: ["createdAt", "updatedAt"]
+                }
+            });
+        const choosenDentist = await Dentist.findByPk(dentistId, {
+            include: {
+                model: User,
+                attributes: ['name', 'surname']
+            },
+            attributes:  ['collegiate', 'specialtyId']
+        })
 
-        if (!dentistId || !date || !hour) {
+        if (choosenTreatment.specialtyId !== choosenDentist.specialtyId) {
+            return res.json({
+                message: "Invalid option (dentist/treatment)"
+            })
+        }
+
+        if (!dentistId || !treatmentId || !date || !hour) {
             return errorController.emptyFields(res);
         }
 
-        if (hour > '23:59:00') {
+        if (hour > '19:30:00' && hour < '09:00:00') {
             return errorController.timeHour(res);
         }
 
@@ -22,6 +42,7 @@ appointmentNewController.newAppointment = async (req, res) => {
             {
                 userId: myId,
                 dentistId: dentistId,
+                treatmentId: treatmentId,
                 date: date,
                 hour: hour
             }
@@ -31,6 +52,8 @@ appointmentNewController.newAppointment = async (req, res) => {
             success: true,
             message: `Appointment arranged on ${newAppoint.date} at ${newAppoint.hour} `,
             newAppoint: newAppoint,
+            choosenTreatment:choosenTreatment,
+            choosenDentist: choosenDentist
         })
 
     } catch (error) {

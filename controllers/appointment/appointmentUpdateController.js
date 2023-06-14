@@ -35,8 +35,8 @@ appointmentUpdateController.updateAppointment = async (req, res) => {
 
         const updateAppoint = await Appointment.update(
             {
-                dentistId: dentistId || this.Appointment,
-                treatmentId: treatmentId || this.Appointment,
+                dentistId: dentistId,
+                treatmentId: treatmentId,
                 date: date || this.Appointment,
                 hour: hour || this.Appointment
             },
