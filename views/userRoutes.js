@@ -13,7 +13,8 @@ router.put('/updateProfile', auth, clientUserController.updateProfile);
 /////////////////////////////////////////////////////////////////
 
 router.get('/clients', auth, isDentist, companyUserController.getAllClients);
-router.post('/userRole', auth, isAdmin, companyUserController.getUSerByRole);
+router.post('/userByRole', auth, isAdmin, companyUserController.getUSerByRole);
+router.put('/update', auth, isAdmin, companyUserController.getUSerByRole);
 
 /////////////////////////////////////////////////////////////////
 

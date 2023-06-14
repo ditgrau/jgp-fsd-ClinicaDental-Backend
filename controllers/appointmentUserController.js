@@ -80,18 +80,6 @@ appointmentUserController.updateAppointment = async (req, res) => {
     //localizamos la cita
     const myId = req.userId
     const { id } = req.params
-    const appointment = await Appointment.findOne({
-      where:
-      {
-        id: id,
-        userId: myId
-      },
-      attributes:
-      {
-        exclude: ["createdAt", "updatedAt"]
-      }
-    })
-
     const { dentistId, date, hour } = req.body
 
     if (hour > '23:59:00') {
