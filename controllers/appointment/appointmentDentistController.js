@@ -1,8 +1,6 @@
-const { Appointment , User, Treatment } = require('../../models');
+const { Appointment , User, Treatment , Dentist } = require('../../models');
 const appointmentDentistController = {};
-
 /////////////////////////////////////////////////////////////
-
 appointmentDentistController.appointmentsDentist = async (req, res) => {
   try {
     const myId = req.userId
@@ -10,10 +8,15 @@ appointmentDentistController.appointmentsDentist = async (req, res) => {
     {
       attributes: ['name', 'surname']
     })
+    const dentist = await Dentist.findOne({
+      where: {
+        userId: myId
+      }
+    })
     const myAppointments = await Appointment.findAll({
       where:
       {
-        dentistId: myId
+        dentistId: dentist.id
       },
       attributes:
       {
@@ -30,14 +33,12 @@ appointmentDentistController.appointmentsDentist = async (req, res) => {
         }
       ]
     })
-
     return res.json({
       success: true,
       nameDentist: myName,
       message: `Your ${myAppointments.length} dental appointments`,
       "Dentist area - My appointments": myAppointments
     })
-
   } catch (error) {
     res.status(500).json({
       success: false,
@@ -46,7 +47,5 @@ appointmentDentistController.appointmentsDentist = async (req, res) => {
     })
   }
 }
-
 ///////////////////////////////////////////////////////
-
 module.exports = appointmentDentistController;

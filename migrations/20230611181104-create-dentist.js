@@ -29,7 +29,6 @@ module.exports = {
       collegiate: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true
       },
       createdAt: {
         allowNull: false,
