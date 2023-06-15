@@ -1,4 +1,4 @@
-const { User } = require('../../models');
+const { User , Dentist } = require('../../models');
 const userUpdateController = {}
 
 //////////////////////////////////////////////////

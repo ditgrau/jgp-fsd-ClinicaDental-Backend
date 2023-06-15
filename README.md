@@ -70,10 +70,17 @@ He logrado implementar todas las funcionalidades especificadas, proporcionando a
             GET http://localhost:3000/user/myProfile
 
     - UPDATE MY PROFILE
-            PUT http://localhost:3000/user/update
+            PUT http://localhost:3000/user/updateProfile
+            
+    - UPDATE PROFILE - admin
+    Edicion de user por admin, si el role cambia a 2 se crea linea en la tabla Dentist.
+            PUT http://localhost:3000/user/update/:id
 
-    - GET ALL CLIENTS
-            GET http://localhost:3000/user/clients
+    - GET ALL PATIENTS
+            GET http://localhost:3000/user/getAllPatients
+
+    - GET USERS BY ROLE
+            GET http://localhost:3000/user/getAllPatients
 
 - APPOINTMENT
     - NEW APPOINTMENT:
@@ -108,7 +115,8 @@ He logrado implementar todas las funcionalidades especificadas, proporcionando a
     Listado de tratamientos, con especialidad y dentistas que lo realizan
             GET http://localhost:3000/treat/allTreatments
     
-    - DENTIST CHOICE
+    - DENTISTS BY TREATMENT
+    Dentistas que realizan el tratamiento
             POST http://localhost:3000/treat/chooseDentist
             
 

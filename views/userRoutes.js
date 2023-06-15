@@ -14,7 +14,7 @@ router.get('/myProfile', auth, userMyProfileController.myProfile);
 router.put('/updateProfile', auth, userUpdatePatientController.updateProfile);
 router.get('/getAllPatients', auth, isDentist, userGetAllPatientsController.getAllPatients);
 router.post('/getByRole', auth, isAdmin, userGetByRoleController.getByRole);
-router.put('/update', auth, isAdmin, userUpdateController.updateUser);
+router.put('/update/:id', auth, isAdmin, userUpdateController.updateUser);
 
 /////////////////////////////////////////////////////////////////
 
