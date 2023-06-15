@@ -1,11 +1,11 @@
 const { User } = require('../../models');
 const bcrypt = require('bcrypt');
 const errorController = require('../../services/errorController');
-const userUpdatePatientController = {};
+const userUpdateProfileController = {};
 
 ////////////////////////////////////////////////////////////////////
 
-userUpdatePatientController.updateProfile = async (req, res) => {
+userUpdateProfileController.updateProfile = async (req, res) => {
     try {
         const myId = req.userId //lo saco del token
         const { name, surname, dni, email, password } = req.body;
@@ -70,4 +70,4 @@ userUpdatePatientController.updateProfile = async (req, res) => {
 
 ////////////////////////////////////////////////////////////////////
 
-module.exports = userUpdatePatientController;
+module.exports = userUpdateProfileController;

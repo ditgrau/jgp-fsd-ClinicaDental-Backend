@@ -1,5 +1,4 @@
 const { User } = require('../../models');
-const errorController = require('../../services/errorController');
 const userMyProfileController = {};
 
 ////////////////////////////////////////////////////////////////////
