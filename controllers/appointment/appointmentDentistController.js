@@ -1,13 +1,13 @@
-const { Appointment , User, Treatment , Dentist } = require('../../models');
+const { Appointment, User, Treatment, Dentist } = require('../../models');
 const appointmentDentistController = {};
 /////////////////////////////////////////////////////////////
 appointmentDentistController.appointmentsDentist = async (req, res) => {
   try {
     const myId = req.userId
     const myName = await User.findByPk(myId,
-    {
-      attributes: ['name', 'surname']
-    })
+      {
+        attributes: ['name', 'surname']
+      })
     const dentist = await Dentist.findOne({
       where: {
         userId: myId

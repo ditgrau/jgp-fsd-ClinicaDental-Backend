@@ -1,4 +1,4 @@
-const { Treatment , Specialty , Dentist , User } = require('../../models');
+const { Treatment, Specialty, Dentist, User } = require('../../models');
 const treatmentGetAllController = {};
 
 ///////////////////////////////////////////
@@ -20,7 +20,7 @@ treatmentGetAllController.getAllTreatments = async (req, res) => {
                         include: [
                             {
                                 model: User,
-                                attributes: ['name' , 'surname' ]
+                                attributes: ['name', 'surname']
                             }
                         ]
                     }

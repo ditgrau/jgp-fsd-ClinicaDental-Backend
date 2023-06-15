@@ -39,7 +39,6 @@ authSignupController.signup = async (req, res) => {
             email: email.toLowerCase(),
             password: hashedPassword,
         })
-
         // si va bien, se genera token 
         let token = jwt.sign(
             {
@@ -55,17 +54,17 @@ authSignupController.signup = async (req, res) => {
             token: token
         })
 
-    // manejo de error, try/catch 
-} catch (error) {
-    if (error.name === "SequelizeUniqueConstraintError") {
-        return errorController.singleFields(res);
+        // manejo de error, try/catch 
+    } catch (error) {
+        if (error.name === "SequelizeUniqueConstraintError") {
+            return errorController.singleFields(res);
+        }
+        return res.status(500).json({
+            message: "User cannot register",
+            error: error.name,
+            error: error.message
+        })
     }
-    return res.status(500).json({
-        message: "User cannot register",
-        error: error.name,
-        error: error.message
-    })
-}
 }
 
 ////////////////////////////////////////////////////////////

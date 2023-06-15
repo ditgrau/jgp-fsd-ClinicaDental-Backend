@@ -36,7 +36,7 @@ treatmentDentistController.dentistByTreatment = async (req, res) => {
             Specialty: specialty.name,
             "Dentists who perform the treatment": dentistBySpecialty.length,
             Dentists: dentistBySpecialty,
-            
+
         })
     }
 

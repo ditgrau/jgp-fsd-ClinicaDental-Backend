@@ -1,4 +1,4 @@
-const { User , Dentist } = require('../../models');
+const { User, Dentist } = require('../../models');
 const userUpdateController = {}
 
 //////////////////////////////////////////////////
@@ -6,14 +6,14 @@ const userUpdateController = {}
 userUpdateController.updateUser = async (req, res) => {
     try {
         const { id } = req.params
-        const { name , surname , dni , email , role , state } = req.body
-        
+        const { name, surname, dni, email, role, state } = req.body
+
         if (role === '2') {
             const createDentist = await Dentist.create({
                 userId: id,
                 specialtyId: 1,
                 collegiate: "Default"
-            })            
+            })
         }
 
         const userProfile = await User.findByPk(id)
@@ -33,10 +33,10 @@ userUpdateController.updateUser = async (req, res) => {
                 },
             }
         )
-    
+
         return res.json({
             success: true,
-            updateAppoint:updateAppoint
+            updateAppoint: updateAppoint
         })
 
     } catch (error) {

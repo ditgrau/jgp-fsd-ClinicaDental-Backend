@@ -1,4 +1,4 @@
-const { Appointment , Treatment , Dentist , User } = require('../../models');
+const { Appointment, Treatment, Dentist, User } = require('../../models');
 const errorController = require('../../services/errorController')
 const appointmentNewController = {};
 
@@ -21,7 +21,7 @@ appointmentNewController.newAppointment = async (req, res) => {
                 model: User,
                 attributes: ['name', 'surname']
             },
-            attributes:  ['collegiate', 'specialtyId']
+            attributes: ['collegiate', 'specialtyId']
         })
 
         if (choosenTreatment.specialtyId !== choosenDentist.specialtyId) {
@@ -52,7 +52,7 @@ appointmentNewController.newAppointment = async (req, res) => {
             success: true,
             message: `Appointment arranged on ${newAppoint.date} at ${newAppoint.hour} `,
             newAppoint: newAppoint,
-            choosenTreatment:choosenTreatment,
+            choosenTreatment: choosenTreatment,
             choosenDentist: choosenDentist
         })
 

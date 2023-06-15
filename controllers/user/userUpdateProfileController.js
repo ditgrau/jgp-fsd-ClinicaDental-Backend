@@ -26,7 +26,7 @@ userUpdateProfileController.updateProfile = async (req, res) => {
                 return errorController.fieldsPattern(res);
             }
         }
-        
+
         // primero va la peticion al body, luego el where
         const userProfile = await User.findByPk(userId)
 
@@ -35,7 +35,7 @@ userUpdateProfileController.updateProfile = async (req, res) => {
             name: name || userProfile.name, // User.name = User // 
             surname: surname || userProfile.surname,
             dni: dni || userProfile.dni,
-            email: email || userProfile.email,          
+            email: email || userProfile.email,
         },
             {
                 where: {
@@ -43,7 +43,7 @@ userUpdateProfileController.updateProfile = async (req, res) => {
                 },
             }
         )
-        
+
         // esta funcion es para que en la res me devuelva los datos nuevos
         const finalProfile = await User.findByPk(userId,
             {

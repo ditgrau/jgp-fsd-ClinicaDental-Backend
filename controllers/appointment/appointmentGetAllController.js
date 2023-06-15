@@ -1,4 +1,4 @@
-const { Appointment , User , Dentist , Treatment } = require('../../models');
+const { Appointment, User, Dentist, Treatment } = require('../../models');
 const appointmentGetAllController = {};
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
