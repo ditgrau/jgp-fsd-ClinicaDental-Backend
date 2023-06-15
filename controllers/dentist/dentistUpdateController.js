@@ -1,4 +1,5 @@
 const { Dentist } = require('../../models');
+const errorController = require('../../services/errorController');
 const dentistUpdateController = {};
 
 //////////////////////////////////////////////////
@@ -9,8 +10,8 @@ dentistUpdateController.updateDentistProfile = async (req, res) => {
         const { specialtyId, collegiate } = req.body
 
         const myProfile = await Dentist.update({
-            specialtyId: specialtyId,
-            collegiate: collegiate
+            specialtyId: specialtyId || this.Dentist,
+            collegiate: collegiate || this.Dentist,
         },
             {
                 where:
@@ -18,10 +19,6 @@ dentistUpdateController.updateDentistProfile = async (req, res) => {
                     userId: myId,
                 }
             })
-
-        if (!specialtyId || !collegiate) {
-            return errorController.emptyFields(res);
-        }
 
         const updatedProfile = await Dentist.findByPk(myId,
             {
