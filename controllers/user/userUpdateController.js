@@ -5,26 +5,28 @@ const userUpdateController = {}
 
 userUpdateController.updateUser = async (req, res) => {
     try {
-        const { id } = req.params
+        const { userId } = req.params
         const { name , surname , dni , email , password , role , state } = req.body
         
         if (role === '2') {
             const createDentist = await Dentist.create({
-                userId: id,
+                userId: userId,
                 specialtyId: 1,
                 collegiate: "Default"
             })            
         }
-        
+
+        const userProfile = await User.findByPk(userId)
+
         const updateAppoint = await User.update(
             {
-                name: name || this.User,
-                surname: surname || this.User,
-                dni: dni || this.User,
-                email: email || this.User,
-                password: password || this.User,
-                role: role || this.User,
-                state: state || this.User,
+                name: name || userProfile.name,
+                surname: surname || userProfile.surname,
+                dni: dni || userProfile.dni,
+                email: email || userProfile.email,
+                password: password || userProfile.password,
+                role: role || userProfile.role,
+                state: state || userProfile.state,
             },
             {
                 where: {

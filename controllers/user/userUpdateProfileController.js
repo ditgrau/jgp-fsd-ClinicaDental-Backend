@@ -7,7 +7,7 @@ const userUpdateProfileController = {};
 
 userUpdateProfileController.updateProfile = async (req, res) => {
     try {
-        const myId = req.userId //lo saco del token
+        const userId = req.userId //lo saco del token
         const { name, surname, dni, email, password } = req.body;
         // validacion formato correo
         if (email) {
@@ -26,36 +26,38 @@ userUpdateProfileController.updateProfile = async (req, res) => {
                 return errorController.fieldsPattern(res);
             }
         }
-
-        const hashedPassword = bcrypt.hashSync(password, 10);
+        
         // primero va la peticion al body, luego el where
+        const userProfile = await User.findByPk(userId)
 
-        const myProfile = await User.update({
+        const updatedProfile = await User.update({
             // update 
-            name: name || this.User, // User.name = User // 
-            surname: surname || this.User,
-            dni: dni || this.User,
-            email: email || this.User,
-            password: hashedPassword || this.User,
+            name: name || userProfile.name, // User.name = User // 
+            surname: surname || userProfile.surname,
+            dni: dni || userProfile.dni,
+            email: email || userProfile.email,          
         },
             {
                 where: {
-                    id: myId
+                    id: userId
                 },
             }
         )
+        
         // esta funcion es para que en la res me devuelva los datos nuevos
-        const updatedProfile = await User.findByPk(myId,
+        const finalProfile = await User.findByPk(userId,
             {
                 attributes: {
                     exclude: ['password']
                 }
             })
+
         return res.json({
             succcess: true,
             message: "Your profile: ",
-            myProfile: updatedProfile,
-            rowsChanged: myProfile,
+            myProfile: finalProfile,
+            rowsChanged: updatedProfile,
+            userProfile: userProfile
         })
     }
 
