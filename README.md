@@ -58,68 +58,6 @@ He logrado implementar todas las funcionalidades especificadas, proporcionando a
 <details>
 <summary>Endpoints</summary>
 
-- AUTH
-    - SING UP
-            POST http://localhost:3000/signup
-
-    - LOGIN
-            POST http://localhost:3000/login 
-
-- USER
-    - MY PROFILE
-            GET http://localhost:3000/user/myProfile
-
-    - UPDATE MY PROFILE
-            PUT http://localhost:3000/user/updateProfile
-            
-    - UPDATE PROFILE - admin
-    Edicion de user por admin, si el role cambia a 2 se crea linea en la tabla Dentist.
-            PUT http://localhost:3000/user/update/:id
-
-    - GET ALL PATIENTS
-            GET http://localhost:3000/user/getAllPatients
-
-    - GET USERS BY ROLE
-            GET http://localhost:3000/user/getAllPatients
-
-- APPOINTMENT
-    - NEW APPOINTMENT:
-    Creacion de nueva cita con coincidencia de especailidad entre tratamiento y dentista, nombre del tratamiento y nombre del dentista.
-            POST http://localhost:3000/appoint/create
-
-    - MY APPOINTMENTS:
-    Todas mis citas con dentista y tratamiento
-            GET http://localhost:3000/appoint/myAppointments
-
-    - APPOINTMENTS PER DENTIST: 
-    Búsqueda de nombre del dentista, cuantas citas tiene, el detalle de las citas con nombre de paciente y nombre de tratamiento.
-            GET http://localhost:3000/appoint/myApptDentist
-
-    - ALL APPOINTMENTS:
-    Todas las citas de la consulta con nombre de paciente, nombre de dentista y nombre de tratamiento
-            GET http://localhost:3000/appoint/getAllAppt
-
-    - DETAIL APPOINTMENT
-    Detalle de la cita, especialidad, tratamiento, dentista y user
-            GET http://localhost:3000/appoint/apptById?id=4
-     
-    - UPDATE MY APPOINTMENT:
-    Update de la cita, con validacion por coincidencia en especialidad entre el tratamiento y el dentista
-            PUT http://localhost:3000/appoint/update:id
-    
-    - DELETE MY APPOINTMENT
-            DELETE http://localhost:3000/appoint/delete:id
-
-- TREATMENT
-    - GET ALL TREATMENTS
-    Listado de tratamientos, con especialidad y dentistas que lo realizan
-            GET http://localhost:3000/treat/allTreatments
-    
-    - DENTISTS BY TREATMENT
-    Dentistas que realizan el tratamiento
-            POST http://localhost:3000/treat/chooseDentist
-            
-
             
 </details>
 

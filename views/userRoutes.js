@@ -13,7 +13,7 @@ const isAdmin = require('../middleware/isAdmin');
 router.get('/myProfile', auth, userMyProfileController.myProfile);
 router.put('/updateProfile', auth, userUpdateProfileController.updateProfile);
 router.get('/getAllPatients', auth, isDentist, userGetAllPatientsController.getAllPatients);
-router.post('/getByRole', auth, isAdmin, userGetByRoleController.getByRole);
+router.get('/getByRole/:role', auth, isAdmin, userGetByRoleController.getByRole);
 router.put('/update/:id', auth, isAdmin, userUpdateController.updateUser);
 
 /////////////////////////////////////////////////////////////////

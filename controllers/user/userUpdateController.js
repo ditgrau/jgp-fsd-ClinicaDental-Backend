@@ -5,18 +5,18 @@ const userUpdateController = {}
 
 userUpdateController.updateUser = async (req, res) => {
     try {
-        const { userId } = req.params
-        const { name , surname , dni , email , password , role , state } = req.body
+        const { id } = req.params
+        const { name , surname , dni , email , role , state } = req.body
         
         if (role === '2') {
             const createDentist = await Dentist.create({
-                userId: userId,
+                userId: id,
                 specialtyId: 1,
                 collegiate: "Default"
             })            
         }
 
-        const userProfile = await User.findByPk(userId)
+        const userProfile = await User.findByPk(id)
 
         const updateAppoint = await User.update(
             {
@@ -24,7 +24,6 @@ userUpdateController.updateUser = async (req, res) => {
                 surname: surname || userProfile.surname,
                 dni: dni || userProfile.dni,
                 email: email || userProfile.email,
-                password: password || userProfile.password,
                 role: role || userProfile.role,
                 state: state || userProfile.state,
             },
@@ -44,6 +43,7 @@ userUpdateController.updateUser = async (req, res) => {
         res.status(500).json({
             success: false,
             message: 'Can not be displayed',
+            error: error.message
         })
     }
 }
