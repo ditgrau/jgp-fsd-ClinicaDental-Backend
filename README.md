@@ -58,6 +58,7 @@ He logrado implementar todas las funcionalidades especificadas, proporcionando a
 <details>
 <summary>Endpoints</summary>
 
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/27697255-c61a3dad-5040-4553-a36a-d11ead64ac45?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D27697255-c61a3dad-5040-4553-a36a-d11ead64ac45%26entityType%3Dcollection%26workspaceId%3Db6c89ddc-e5ae-481f-8c5a-ae982819ae1e)
             
 </details>
 
@@ -78,6 +79,7 @@ He logrado implementar todas las funcionalidades especificadas, proporcionando a
 ### Agradecimientos:
 
 Agradezco a mis compañeros y docentes, pero en especial a Coral, compi hasta en las duras y a Dani, un docente sin igual:
+Más de 100 commits, muchas horas y mucho REFACTOR, pero ha valido la pena.
 
 - **CORAL**  
 <a href="https://github.com/Coral-JM" target="_blank"><img src="https://img.shields.io/badge/github-24292F?style=for-the-badge&logo=github&logoColor=lime" target="_blank"></a> 
