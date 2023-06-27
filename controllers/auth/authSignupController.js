@@ -43,6 +43,7 @@ authSignupController.signup = async (req, res) => {
         let token = jwt.sign(
             {
                 id: newUser.id,
+                name: newUser.name,
                 role: newUser.role,
                 email: newUser.email,
             },
