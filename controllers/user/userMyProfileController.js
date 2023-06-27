@@ -14,7 +14,7 @@ userMyProfileController.myProfile = async (req, res) => {
 
         return res.json({
             succcess: true,
-            "My profile": myProfile
+            myProfile: myProfile
         })
     }
 
