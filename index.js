@@ -1,6 +1,7 @@
 require('dotenv').config() //para las variables de entorno
 const express = require('express');
 const app = express();
+const cors = require("cors");
 const PORT = 3000;
 const db = require('./db');
 const router = require ('./router');
@@ -8,6 +9,7 @@ const router = require ('./router');
 /////////////////////////////////////////////////////////////////
 
 app.use(express.json());
+app.use(cors());
 app.use (router);
 
 /////////////////////////////////////////////////////////////////
