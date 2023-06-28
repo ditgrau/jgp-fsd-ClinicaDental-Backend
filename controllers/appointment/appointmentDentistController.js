@@ -37,7 +37,7 @@ appointmentDentistController.appointmentsDentist = async (req, res) => {
       success: true,
       nameDentist: myName,
       message: `Your ${myAppointments.length} dental appointments`,
-      "Dentist area - My appointments": myAppointments
+      myAppointments: myAppointments
     })
   } catch (error) {
     res.status(500).json({

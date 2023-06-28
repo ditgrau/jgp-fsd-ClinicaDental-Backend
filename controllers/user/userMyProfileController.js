@@ -1,4 +1,4 @@
-const { User } = require('../../models');
+const { User , Dentist , Specialty} = require('../../models');
 const userMyProfileController = {};
 
 ////////////////////////////////////////////////////////////////////
@@ -9,6 +9,14 @@ userMyProfileController.myProfile = async (req, res) => {
         const myProfile = await User.findByPk(myId, {
             attributes: {
                 exclude: ['password']
+            },
+            include: {
+                model: Dentist,
+                attributes: ['specialtyId', 'collegiate'],
+                include: {
+                    model: Specialty,
+                    attributes: ['name']
+                }
             }
         })
 

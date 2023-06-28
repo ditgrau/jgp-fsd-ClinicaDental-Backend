@@ -35,7 +35,7 @@ appointmentGetAllController.getAllAppointments = async (req, res) => {
         return res.json({
             success: true,
             message: `${allAppt.length} results displayed`,
-            "Dentist area - All appointments": allAppt
+            allAppt: allAppt
         })
 
     } catch (error) {
