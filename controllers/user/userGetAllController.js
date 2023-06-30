@@ -14,9 +14,15 @@ userGetAllController.getAll = async (req, res) => {
                 include: [
                     {
                         model: Appointment,
+                        attributes: {
+                            exclude: ["createdAt", "updatedAt"]
+                        },
                         include: [
                             {
                                 model: Dentist,
+                                attributes: {
+                                    exclude: ["createdAt", "updatedAt"]
+                                },
                                 include: [
                                     {
                                         model: User,
@@ -25,7 +31,10 @@ userGetAllController.getAll = async (req, res) => {
                                 ]
                             },
                             {
-                                model: Treatment
+                                model: Treatment,
+                                attributes: {
+                                    exclude: ["createdAt", "updatedAt"]
+                                }
                             }
                         ]
                     }
