@@ -19,7 +19,7 @@ appointmentGetMineController.myAppointments = async (req, res) => {
       include: [
         {
           model: Treatment,
-          attributes: ['name']
+          attributes: ['name', 'price', 'time']
         },
         {
           model: Dentist,
