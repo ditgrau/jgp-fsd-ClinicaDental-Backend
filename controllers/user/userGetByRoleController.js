@@ -6,7 +6,6 @@ const userGetByRoleController = {}
 userGetByRoleController.getByRole = async (req, res) => {
     try {
         const { role } = req.params;
-        console.log(role)
         const usersByRole = await User.findAll(
             {
                 where: {

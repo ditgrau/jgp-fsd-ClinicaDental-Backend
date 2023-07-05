@@ -7,7 +7,7 @@ const isDentist = require('../middleware/isDentist');
 ////////////////////////////////////////////////////////
 
 router.put('/updateDentistProfile', auth, isDentist, dentistUpdateController.updateDentistProfile);
-router.get('/getAllDentist', auth, userGetAllDentistController.getAllDentist);
+router.get('/getAllDentist', userGetAllDentistController.getAllDentist);
 
 ////////////////////////////////////////////////////////
 
