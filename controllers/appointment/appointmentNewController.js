@@ -26,6 +26,7 @@ appointmentNewController.newAppointment = async (req, res) => {
 
         if (choosenTreatment.specialtyId !== choosenDentist.specialtyId) {
             return res.json({
+                success: false,
                 message: "Invalid option (dentist/treatment)"
             })
         }
