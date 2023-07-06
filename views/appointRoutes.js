@@ -20,7 +20,7 @@ router.get('/appointmentsDentist', auth, isDentist, appointmentDentistController
 router.get('/getAll', auth, appointmentGetAllController.getAllAppointments);
 router.get('/appointmentById', auth, isDentist, appointmentByIdController.appointmentById);
 router.get('/myAppointments', auth, isUser, appointmentGetMineController.myAppointments);
-router.post('/new', auth, appointmentNewController.newAppointment);
+router.post('/new', auth, isUser, appointmentNewController.newAppointment);
 router.put('/update/:id', auth, isUser, appointmentUpdateController.updateAppointment);
 router.delete('/delete/:id', auth, appointmentDeleteController.deleteAppointment);
 

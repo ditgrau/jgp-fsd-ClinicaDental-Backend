@@ -35,8 +35,6 @@ appointmentUpdateController.updateAppointment = async (req, res) => {
 
         const updateAppoint = await Appointment.update(
             {
-                dentistId: dentistId,
-                treatmentId: treatmentId,
                 date: date || this.Appointment,
                 hour: hour || this.Appointment
             },
@@ -51,11 +49,8 @@ appointmentUpdateController.updateAppointment = async (req, res) => {
         const finalAppoint = await Appointment.findByPk(id)
         return res.json({
             "Updated Appointment": {
-                dentistId: finalAppoint.dentistId,
-                treatmentId: finalAppoint.treatmentId,
                 date: finalAppoint.date,
                 hour: finalAppoint.hour,
-                choosenTreatment: choosenTreatment
             },
             "Changed records": updateAppoint,
         })
