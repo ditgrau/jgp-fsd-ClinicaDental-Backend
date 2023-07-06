@@ -1,5 +1,5 @@
 
-__<p align="center">Proyecto 3 - Mastermind - Semana 4</p>__
+__<p align="center">Proyecto 3 - Backend NodeJS - Semana 7</p>__
 <h2 align="center">⚙️ Primer proyecto de backend ⚙️</h2>
 
 <details>
